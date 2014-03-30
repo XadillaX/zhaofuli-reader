@@ -6,8 +6,8 @@
 Release
 -------
 
-Mac: [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
-Windows: [http://pan.baidu.com/s/1pJwJTzH](http://pan.baidu.com/s/1pJwJTzH) with code `p4pz`.
++ Mac: [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
++ Windows: [http://pan.baidu.com/s/1pJwJTzH](http://pan.baidu.com/s/1pJwJTzH) with code `p4pz`.
 
 开源许可
 -------------------
