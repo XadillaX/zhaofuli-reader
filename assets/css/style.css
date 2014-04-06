@@ -1,0 +1,126 @@
+* {
+    font-family: "微软雅黑";
+}
+
+body {
+    background-color: #fff;
+}
+
+.fl { float: left; }
+.fr { float: right; }
+.cl { clear: both; }
+
+/** 标题栏 */
+.title-bar {
+    position: fixed;
+
+    background: #15a0f5;
+    height: 45px;
+    width: 100%;
+
+    -webkit-user-select: none;
+}
+
+.title-can-move {
+    -webkit-app-region: drag;
+}
+
+.title-logo {
+    height: 45px;
+    width: 100px;
+    background: url("../images/logo.png");
+}
+
+.title-operators {
+    height: 45px;
+
+    padding-right: 15px;
+}
+
+/** 右上角按钮 */
+.title-operators > .title-operator {
+    -webkit-app-region: no-drag;
+    margin-top: 13.5px;
+    margin-left: 10px;
+
+    height: 18px;
+    width: 18px;
+
+    background-position-x: 0px;
+    background-position-y: 0px;
+
+    cursor: pointer;
+}
+
+.title-operators > .title-operator:hover {
+    background-position-y: 18px;
+}
+
+.title-operators > .minimize {
+    background-image: url("../images/title/minimize.png");
+}
+
+.title-operators > .restore {
+    background-image: url("../images/title/restore.png");
+    display: none;
+}
+
+.title-operators > .maximize {
+    background-image: url("../images/title/maximize.png");
+}
+
+.title-operators > .close-btn {
+    background-image: url("../images/title/close.png");
+}
+
+/** Banner */
+#banner-object {
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: -999;
+    height: 240px;
+    background: url("../images/banner.png");
+    background-repeat: no-repeat;
+    top: 45px;
+}
+
+/** Body */
+#top-margin {
+    height: 220px;
+}
+
+#body {
+    min-height: 100px;
+    background: url("../images/banner-mask.png");
+}
+
+/** 每日一句 */
+#daily-sentence {
+    padding-top: 15px;
+    -webkit-user-select: none;
+}
+
+#daily-sentence > #en-sentence {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#daily-sentence > #zh-sentence {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#daily-sentence > #en-sentence span {
+    font-size: 18px;
+    font-family: "Times New Roman";
+    font-style: italic;
+    text-shadow: 0 1px 1px #fff;
+}
+
+#daily-sentence > #zh-sentence span {
+    font-size: 14px;
+    text-shadow: 0 1px 1px #fff;
+}

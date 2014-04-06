@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>找福利 - 小巧阅读器</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/innerPage.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+
+    <script src="js/innerPage.js"></script>
+</head>
+<body>
+    <div id="container" class="container"></div>
+
+    <a name="comments"></a>
+
+    <script>
+    var duoshuoQuery = {
+        "short_name": "zhaofuli2013",
+        "sso": {
+            "login": "http:\/\/zhaofuli.net\/wp-login.php?action=duoshuo_login",
+            "logout": "http:\/\/zhaofuli.net\/wp-login.php?action=logout&_wpnonce=533b37da33"
+        },
+        "theme": "default",
+        "stylePatch": "wordpress\/D8"
+    };
+    duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+    duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+    (function() {
+        var ds = document.createElement('script'); ds.type = 'text/javascript'; ds.async = true;
+        ds.charset = 'UTF-8';
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+    <div class="container">
+        <div class="ds-thread" data-author-key="1"></div>
+    </div>
+
+    <script>
+    if (typeof DUOSHUO !== 'undefined') DUOSHUO.EmbedThread('.ds-thread');
+    </script>
+
+    <div id="ds-ssr">
+        <ol id="commentlist">
+        </ol>
+    </div>
+
+    <div id="footer">
+        找福利阅读器 &copy;
+    </div>
+</body>
+</html>

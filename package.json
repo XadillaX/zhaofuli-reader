@@ -1,22 +1,22 @@
 {
-    "name": "zhaofuli-reader",
-    "main": "index.html",
+  "main": "page/index.html",
+  "name": "zhaofuli",
+  "description": "Zhaofuli reader.",
+  "version": "0.1.0",
+  "keywords": [ "zhaofuli", "av" ],
+  "window": {
+    "title": "找福利",
+    "icon": "link.png",
 
-    "window": {
-        "toolbar": false,
-        "frame": true,
-        "resizable": false,
-
-        "width": 400,
-        "height": 500,
-
-        "icon": "icon.png"
-    },
-
-    "title": "找福利阅读器",
-
-    "dependencies": {
-        "async": "~0.2.9",
-        "spidex": "~1.0.1"
-    }
+    "toolbar": false,
+    "frame": false,
+    "resizable": true,
+    
+    "width": 640,
+    "height": 700,
+    "position": "center"
+  },
+  "webkit": {
+    "plugin": true
+  }
 }
