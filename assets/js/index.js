@@ -1,34 +1,14 @@
 var gui = require('nw.gui');
 var win = gui.Window.get();
-
-function initWindow() {
-    $(".title-operators > .minimize").click(function() {
-        win.minimize();
-    });
-    $(".title-operators > .maximize").click(function() {
-        win.maximize();
-    });
-    $(".title-operators > .restore").click(function() {
-        win.restore();
-    });
-    $(".title-operators > .close-btn").click(function() {
-        win.close();
-    });
-
-    win.on("maximize", function() {
-        $(".title-operators > .maximize").css("display", "none");
-        $(".title-operators > .restore").css("display", "inline-block");
-    });
-    win.on("unmaximize", function() {
-        $(".title-operators > .maximize").css("display", "inline-block");
-        $(".title-operators > .restore").css("display", "none");
-    });
-}
-
 var BannerObject = require("../assets/js/util/bannerObject");
 var DailySentencer = require("../assets/js/util/dailySentencer");
+var FuliType = require("../assets/js/util/fuliType");
+var Navbar = require("../assets/js/util/navbar");
+var FuliList = require("../assets/js/util/fuliList");
 
 $(function() {
+    require("sugar/release/sugar-full.development");
+
     initWindow();
 
     var bannerObject = new BannerObject(win, $);
@@ -36,4 +16,13 @@ $(function() {
 
     var dailySentencer = new DailySentencer(win, $);
     dailySentencer.fetch();
+
+    var fuliType = new FuliType();
+    fuliType.on("alert", function(msg, voice) { vex.dialog.alert(msg); $.say(voice, "zh-CN"); });
+
+    var fuliList = new FuliList(win, $, fuliType);
+    fuliList.init();
+
+    var navbar = new Navbar(win, $, fuliType);
+    navbar.init();
 });

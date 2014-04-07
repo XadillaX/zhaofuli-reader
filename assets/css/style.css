@@ -10,6 +10,8 @@ body {
 .fr { float: right; }
 .cl { clear: both; }
 
+.vex { -webkit-user-select: none; }
+
 /** 标题栏 */
 .title-bar {
     position: fixed;
@@ -87,7 +89,7 @@ body {
 
 /** Body */
 #top-margin {
-    height: 220px;
+    height: 170px;
 }
 
 #body {
@@ -123,4 +125,9 @@ body {
 #daily-sentence > #zh-sentence span {
     font-size: 14px;
     text-shadow: 0 1px 1px #fff;
+}
+
+#nav {
+    margin-bottom: 10px;
+    -webkit-user-select: none;
 }

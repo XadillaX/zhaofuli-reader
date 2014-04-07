@@ -8,7 +8,7 @@
     "title": "找福利",
     "icon": "link.png",
 
-    "toolbar": false,
+    "toolbar": true,
     "frame": false,
     "resizable": true,
     

@@ -9,8 +9,13 @@
 
     <script src="../assets/js/jquery-2.1.0.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/vex/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-flat-attack';</script>
+    <link rel="stylesheet" href="../assets/vex/css/vex.css" />
+    <link rel="stylesheet" href="../assets/vex/css/vex-theme-flat-attack.css" />
 
     <script src="../assets/js/say/jquery.say.js"></script>
+    <script src="../assets/js/za.js"></script>
     <script src="../assets/js/index.js"></script>
 </head>
 <body>
@@ -30,6 +35,21 @@
     <div id="banner-object"></div>
 
     <div id="top-margin"></div>
+    <div id="nav">
+        <div class="container">
+            <div class="btn-group">
+                <button type="button" class="btn btn-info btn-warning">全部</button>
+                <button type="button" class="btn btn-info">福利</button>
+                <button type="button" class="btn btn-info">软件</button>
+                <button type="button" class="btn btn-info">内涵</button>
+                <button type="button" class="btn btn-info">发源</button>
+                <button type="button" class="btn btn-info">极客</button>
+                <button type="button" class="btn btn-info">游戏</button>
+                <button type="button" class="btn btn-info">推荐</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <div id="body">
         <div class="container">
             <div id="daily-sentence">
@@ -47,6 +67,10 @@
                     </a>
                 </div>
             </div>
+        </div>
+
+        <div class="container" id="list-container">
+
         </div>
     </div>
 </body>
