@@ -135,4 +135,9 @@ body {
 .nav-fixed {
     position: fixed;
     top: 55px;
+    z-index: 888;
+}
+
+#list-container {
+    margin-top: 20px;
 }

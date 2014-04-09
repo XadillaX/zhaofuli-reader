@@ -113,9 +113,11 @@ FuliList.prototype.loadMore = function(name) {
             self.type.emit("alert", error, error.stripTags());
         } else {
             cache.setProgressPercent(100);
+            cache.progressBar.css("display", "none");
 
             // 载入到页面，并且加入到缓存
-            cache.addItem("<pre>" + JSON.stringify(list, null, 2) + "</pre>");
+            cache.addItem("<div class='row'><div class='col-md-12'><pre>" + JSON.stringify(list, null, 2) + "</pre></div></div>");
+
             for(var i = 0; i < list.length; i++) {
                 cache.list.push(list[i]);
             }
@@ -143,7 +145,7 @@ FuliList.prototype._createFuliCache = function(name) {
         </div>');
 
     this.fuliCache[name].progressBar = this.fuliCache[name].object.find(".progress");
-    this.fuliCache[name].itemsWrapper = this.fuliCache[name].object.find(".item-wrapper");
+    this.fuliCache[name].itemsWrapper = this.fuliCache[name].object.find(".items-wrapper");
 
     this.fuliCache[name].setProgressPercent = function(percent) {
         this.progressBar.find(".progress-bar").css("width", percent + "%");
