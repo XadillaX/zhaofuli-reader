@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/nanoscroller.css" type="text/css" />
 
     <script src="../assets/js/jquery-2.1.0.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -14,6 +15,8 @@
     <link rel="stylesheet" href="../assets/vex/css/vex.css" />
     <link rel="stylesheet" href="../assets/vex/css/vex-theme-flat-attack.css" />
 
+    <script src="../assets/js/jquery.pin.min.js"></script>
+    <script src="../assets/js/jquery.nanoscroller.min.js"></script>
     <script src="../assets/js/say/jquery.say.js"></script>
     <script src="../assets/js/za.js"></script>
     <script src="../assets/js/index.js"></script>
@@ -31,46 +34,47 @@
 
         <div class="cl"></div>
     </div>
-
     <div id="banner-object"></div>
+    <div style="height: 45px;"></div>
+    <div class="nano">
+        <div class="nano-content">
 
-    <div id="top-margin"></div>
-    <div id="nav">
-        <div class="container">
-            <div class="btn-group">
-                <button type="button" class="btn btn-info btn-warning">全部</button>
-                <button type="button" class="btn btn-info">福利</button>
-                <button type="button" class="btn btn-info">软件</button>
-                <button type="button" class="btn btn-info">内涵</button>
-                <button type="button" class="btn btn-info">发源</button>
-                <button type="button" class="btn btn-info">极客</button>
-                <button type="button" class="btn btn-info">游戏</button>
-                <button type="button" class="btn btn-info">推荐</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div id="body">
-        <div class="container">
-            <div id="daily-sentence">
-                <div id="en-sentence" class="col-xs-11"><span data-toggle="tooltip" data-placement="top">Each day one sentence.</span></div>
-                <div class="col-xs-1" style="height: 25px;">
-                    <a id="say-english" type="button" class="btn btn-info btn-xs" style="margin-top: 5px;">
-                        <i class="glyphicon glyphicon-volume-up"> </i>
-                    </a>
-                </div>
+            <div id="top-margin"></div>
 
-                <div id="zh-sentence" class="col-xs-11"><span data-toggle="tooltip" data-placement="top">每日一句。</span></div>
-                <div class="col-xs-1">
-                    <a id="say-chinese" type="button" class="btn btn-info btn-xs" style="margin-top: 3px;">
-                        <i class="glyphicon glyphicon-volume-up"> </i>
-                    </a>
+            <div id="nav" class="container">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-warning">全部</button>
+                    <button type="button" class="btn btn-info">福利</button>
+                    <button type="button" class="btn btn-info">软件</button>
+                    <button type="button" class="btn btn-info">内涵</button>
+                    <button type="button" class="btn btn-info">发源</button>
+                    <button type="button" class="btn btn-info">极客</button>
+                    <button type="button" class="btn btn-info">游戏</button>
+                    <button type="button" class="btn btn-info">推荐</button>
                 </div>
             </div>
-        </div>
+            <div id="body">
+                <div class="container">
+                    <div id="daily-sentence">
+                        <div id="en-sentence" class="col-xs-11"><span data-toggle="tooltip" data-placement="top">Each day one sentence.</span></div>
+                        <div class="col-xs-1" style="height: 25px;">
+                            <a id="say-english" type="button" class="btn btn-info btn-xs" style="margin-top: 5px;">
+                                <i class="glyphicon glyphicon-volume-up"> </i>
+                            </a>
+                        </div>
 
-        <div class="container" id="list-container">
+                        <div id="zh-sentence" class="col-xs-11"><span data-toggle="tooltip" data-placement="top">每日一句。</span></div>
+                        <div class="col-xs-1">
+                            <a id="say-chinese" type="button" class="btn btn-info btn-xs" style="margin-top: 3px;">
+                                <i class="glyphicon glyphicon-volume-up"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="container" id="list-container">
+                </div>
+            </div>
         </div>
     </div>
 </body>

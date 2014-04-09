@@ -1,4 +1,5 @@
 var gui = require('nw.gui');
+require("sugar/release/sugar-full.development");
 var win = gui.Window.get();
 var BannerObject = require("../assets/js/util/bannerObject");
 var DailySentencer = require("../assets/js/util/dailySentencer");
@@ -7,7 +8,7 @@ var Navbar = require("../assets/js/util/navbar");
 var FuliList = require("../assets/js/util/fuliList");
 
 $(function() {
-    require("sugar/release/sugar-full.development");
+    $(".nano").nanoScroller({ tabIndex: -1 });
 
     initWindow();
 
@@ -18,11 +19,13 @@ $(function() {
     dailySentencer.fetch();
 
     var fuliType = new FuliType();
-    fuliType.on("alert", function(msg, voice) { vex.dialog.alert(msg); $.say(voice, "zh-CN"); });
+    fuliType.on("alert", function(msg, voice) { vex.dialog.alert(msg); /**$.say(voice, "zh-CN");*/ });
 
     var fuliList = new FuliList(win, $, fuliType);
     fuliList.init();
 
     var navbar = new Navbar(win, $, fuliType);
     navbar.init();
+
+    win.showDevTools();
 });

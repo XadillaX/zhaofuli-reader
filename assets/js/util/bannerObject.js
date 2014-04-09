@@ -40,6 +40,16 @@ BannerObject.prototype.reposition = function() {
     } else {
         this.object.css("background-position-x", "0px");
     }
+
+    // body长度
+    var height = window.innerHeight;
+    height -= 45;
+    $(".nano").css("height", height + "px");
+    $(".nano").nanoScroller({ tabIndex: -1 });
+
+    // navbar 位置
+    left = $("#list-container").offset().left;
+    $("#nav").css("left", left + "px");
 };
 
 module.exports = BannerObject;

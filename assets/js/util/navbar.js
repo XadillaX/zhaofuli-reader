@@ -37,6 +37,27 @@ Navbar.prototype.init = function() {
         // UI变化
         self.object.find("button").removeClass("btn-warning");
         $(this).addClass("btn-warning");
+        $(".nano").nanoScroller();
+    });
+
+    // 滚动条滚动
+    $(".nano").on("update", function(event, values){
+        if(values.position > 110) {
+            // 固定navbar
+            $("#nav").addClass("nav-fixed");
+        } else {
+            // 恢复navbar
+            $("#nav").removeClass("nav-fixed");
+        }
+
+        // Banner条的透明度
+        var maxDown = 300;
+        if(values.position >= maxDown) {
+            $("#banner-object").stop().fadeTo("normal", 0);
+        } else {
+            var opacity = 1 - (values.position / maxDown);
+            $("#banner-object").stop().fadeTo("normal", opacity);
+        }
     });
 };
 

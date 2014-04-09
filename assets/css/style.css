@@ -89,12 +89,12 @@ body {
 
 /** Body */
 #top-margin {
-    height: 170px;
+    height: 125px;
 }
 
 #body {
     min-height: 100px;
-    background: url("../images/banner-mask.png");
+    background: url("../images/banner-mask.png") repeat-x;
 }
 
 /** 每日一句 */
@@ -130,4 +130,9 @@ body {
 #nav {
     margin-bottom: 10px;
     -webkit-user-select: none;
+}
+
+.nav-fixed {
+    position: fixed;
+    top: 55px;
 }
