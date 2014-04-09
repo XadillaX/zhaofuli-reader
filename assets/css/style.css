@@ -4,6 +4,7 @@
 
 body {
     background-color: #fff;
+    overflow-x: hidden;
 }
 
 .fl { float: left; }
@@ -103,26 +104,26 @@ body {
     -webkit-user-select: none;
 }
 
-#daily-sentence > #en-sentence {
+#daily-sentence #en-sentence {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#daily-sentence > #zh-sentence {
+#daily-sentence #zh-sentence {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#daily-sentence > #en-sentence span {
+#daily-sentence #en-sentence span {
     font-size: 18px;
     font-family: "Times New Roman";
     font-style: italic;
     text-shadow: 0 1px 1px #fff;
 }
 
-#daily-sentence > #zh-sentence span {
+#daily-sentence #zh-sentence span {
     font-size: 14px;
     text-shadow: 0 1px 1px #fff;
 }
@@ -138,6 +139,49 @@ body {
     z-index: 888;
 }
 
-#list-container {
+#top-articles {
+    -webkit-user-select: none;
+}
+
+.top-articles-fixed {
+    position: fixed;
+    top: 105px;
+    z-index: 888;
+}
+
+#list-container-wrapper {
     margin-top: 20px;
+}
+
+.top-articles-ul {
+    list-style-position: inside;
+
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+
+    text-shadow: 0 1px 1px #fff;
+}
+
+.top-articles-ul > li {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    list-style-type: none;
+
+    background: url("../images/top-article-li-dot.png") no-repeat 0 7px;
+    padding-left: 8px;
+}
+
+.top-articles-ul > li > a {
+    color: #333;
+}
+
+.top-articles-ul > li > p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: #999;
 }

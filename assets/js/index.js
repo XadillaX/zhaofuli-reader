@@ -6,6 +6,7 @@ var DailySentencer = require("../assets/js/util/dailySentencer");
 var FuliType = require("../assets/js/util/fuliType");
 var Navbar = require("../assets/js/util/navbar");
 var FuliList = require("../assets/js/util/fuliList");
+var TopArticles = require("../assets/js/util/topArticles");
 
 $(function() {
     $(".nano").nanoScroller({ tabIndex: -1 });
@@ -26,6 +27,9 @@ $(function() {
 
     var navbar = new Navbar(win, $, fuliType);
     navbar.init();
+
+    var topArticles = new TopArticles(win, $, fuliType);
+    topArticles.load();
 
     win.showDevTools();
 });

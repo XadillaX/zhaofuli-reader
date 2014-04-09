@@ -25,7 +25,7 @@ Navbar.prototype.init = function() {
     var self = this;
 
     // 按了按钮就导航过去
-    this.object.find("button").click(function() {
+    this.object.find("a").click(function() {
         var type = $(this).text();
 
         // 若还是选了这个
@@ -35,7 +35,7 @@ Navbar.prototype.init = function() {
         self.type.setCurrent(type);
 
         // UI变化
-        self.object.find("button").removeClass("btn-warning");
+        self.object.find("a").removeClass("btn-warning");
         $(this).addClass("btn-warning");
         $(".nano").nanoScroller();
     });
@@ -45,9 +45,17 @@ Navbar.prototype.init = function() {
         if(values.position > 110) {
             // 固定navbar
             $("#nav").addClass("nav-fixed");
+            $("#nav .btn-group").addClass("btn-group-justified");
         } else {
             // 恢复navbar
             $("#nav").removeClass("nav-fixed");
+            $("#nav .btn-group").removeClass("btn-group-justified");
+        }
+
+        if(values.position > 160) {
+            $("#top-articles").addClass("top-articles-fixed");
+        } else {
+            $("#top-articles").removeClass("top-articles-fixed");
         }
 
         // Banner条的透明度

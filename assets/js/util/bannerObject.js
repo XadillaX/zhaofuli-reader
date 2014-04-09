@@ -6,6 +6,8 @@ var BannerObject = function(win, jquery) {
     this.win = win;
     this.object = $("#banner-object");
     this.width = 0;
+
+    setInterval(this.reposition.bind(this), 500);
 };
 
 BannerObject.prototype.init = function() {
@@ -35,8 +37,7 @@ BannerObject.prototype.reposition = function() {
 
     // 背景图片位置
     if(this.width < 1024) {
-        left = (this.width - 1024) / 2;
-        this.object.css("background-position-x", left + "px");
+        this.object.css("background-position-x", ((this.width - 1024) / 2) + "px");
     } else {
         this.object.css("background-position-x", "0px");
     }
@@ -48,8 +49,9 @@ BannerObject.prototype.reposition = function() {
     $(".nano").nanoScroller({ tabIndex: -1 });
 
     // navbar 位置
-    left = $("#list-container").offset().left;
-    $("#nav").css("left", left + "px");
+    $("#nav").css("left", $("#list-container-wrapper").offset().left + "px");
+    // 右边置顶宽度
+    $("#top-articles .panel").css("width", $("#top-articles").parent().width() + "px");
 };
 
 module.exports = BannerObject;
