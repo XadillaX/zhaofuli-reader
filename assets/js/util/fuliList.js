@@ -64,6 +64,60 @@ FuliList.prototype._parseList = function(html) {
 };
 
 /**
+ * 添加日期
+ * @param cache
+ * @param item
+ */
+FuliList.prototype.insertDate = function(cache, item) {
+    var html = "<div class='row fuli-date' id='date-" + item.date + "'></div>";
+    cache.addItem(html);
+
+    cache.object.find("#date-" + item.date).html('<div class="col-xs-12"><span class="badge">' + item.date + '</span></div>')
+};
+
+/**
+ * 添加元素
+ * @param cache
+ * @param item
+ */
+FuliList.prototype.addItem = function(cache, item) {
+    var html = "<div class='row fuli-item-object'></div>";
+    cache.addItem(html);
+    item.object = cache.object.find(".fuli-item-object:last");
+
+    var summary = item.summary;
+    if(summary.length > 40) {
+        summary = summary.substr(0, 37) + "...";
+    }
+
+    html = '<div class="col-xs-4">' +
+        '       <a class="to-fancy" href="' + item.image + '" title="' + item.title + '">' +
+        '           <img src="' + item.image + '" alt="' + item.title + '" class="img-thumbnail" /><div class="width-flag" style="width: 100%;"></div>' +
+        '       </a>' +
+        '   </div>' +
+        '   <div class="col-xs-8">' +
+        '       <h3>' + item.title + '</h3>' +
+        '       <p>' + summary + '</p>' +
+        '   </div>';
+    item.object.html(html);
+
+    var w = item.object.find(".width-flag").width();
+    item.object.find("img").css("width", w + "px");
+    item.object.find("img").css("height", (w * 0.75) + "px");
+    item.object.css("height", (w * 0.75) + "px");
+
+    $(".to-fancy").fancybox({
+        helpers: {
+            title : {
+                type : 'float'
+            }
+        },
+
+        margin: [ 65, 20, 20, 20 ]
+    });
+};
+
+/**
  * 载入更多
  * @param name
  */
@@ -116,7 +170,22 @@ FuliList.prototype.loadMore = function(name) {
             cache.progressBar.css("display", "none");
 
             // 载入到页面，并且加入到缓存
-            cache.addItem("<div class='row'><div class='col-md-12'><pre>" + JSON.stringify(list, null, 2) + "</pre></div></div>");
+            // cache.addItem("<div class='row'><div class='col-md-12'><pre>" + JSON.stringify(list, null, 2) + "</pre></div></div>");
+            for(var i = 0; i < list.length; i++) {
+                if(i === 0 && cache.list.length === 0) {
+                    // 第一个
+                    self.insertDate(cache, list[i]);
+                } else if(i === 0 && list[i].date !== cache.list[cache.list.length - 1]) {
+                    // 第一个与上一次不一样
+                    self.insertDate(cache, list[i]);
+                } else if(list[i].date !== list[i - 1].date) {
+                    // 与上一次不一样
+                    self.insertDate(cache, list[i]);
+                }
+
+                // 添加卡牌
+                self.addItem(cache, list[i]);
+            }
 
             for(var i = 0; i < list.length; i++) {
                 cache.list.push(list[i]);

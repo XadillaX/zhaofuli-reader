@@ -185,3 +185,40 @@ body {
 
     color: #999;
 }
+
+.fuli-date {
+    -webkit-user-select: none;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.fuli-item-object {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.fuli-item-object img {
+    width: 200px;
+    height: 150px;
+
+    -webkit-user-select: none;
+}
+
+.fuli-item-object h3 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(80, 80, 80, 0.5);
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+}
+
+.fuli-item-object p {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+}

@@ -52,6 +52,12 @@ BannerObject.prototype.reposition = function() {
     $("#nav").css("left", $("#list-container-wrapper").offset().left + "px");
     // 右边置顶宽度
     $("#top-articles .panel").css("width", $("#top-articles").parent().width() + "px");
+
+    // 图片
+    var w = $(".width-flag:visible:first").width();
+    $(".fuli-item-object img").css("width", w + "px");
+    $(".fuli-item-object img").css("height", (w * 0.75) + "px");
+    $(".fuli-item-object").css("height", (w * 0.75) + "px");
 };
 
 module.exports = BannerObject;
