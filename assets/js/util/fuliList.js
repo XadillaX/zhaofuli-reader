@@ -187,6 +187,8 @@ FuliList.prototype.loadMore = function(name) {
                 self.addItem(cache, list[i]);
             }
 
+            cache.object.addClass("animated rollIn");
+
             for(var i = 0; i < list.length; i++) {
                 cache.list.push(list[i]);
             }
@@ -237,7 +239,7 @@ FuliList.prototype._createFuliCache = function(name) {
 FuliList.prototype._switchType = function(name) {
     console.log("选择了 [" + name + "]...");
 
-    $(".each-type-list").css("display", "none");
+    $(".each-type-list").css('display', "none");
 
     if(undefined === this.fuliCache[name]) {
         this._createFuliCache(name);
