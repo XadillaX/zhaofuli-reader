@@ -6,6 +6,7 @@ var DailySentencer = require("../assets/js/util/dailySentencer");
 var FuliType = require("../assets/js/util/fuliType");
 var Navbar = require("../assets/js/util/navbar");
 var FuliList = require("../assets/js/util/fuliList");
+var FuliPage = require("../assets/js/util/fuliPage");
 var TopArticles = require("../assets/js/util/topArticles");
 
 $(function() {
@@ -30,6 +31,9 @@ $(function() {
 
     var topArticles = new TopArticles(win, $, fuliType);
     topArticles.load();
+
+    var fuliPage = new FuliPage(win, $, fuliType);
+    fuliPage.init();
 
     win.showDevTools();
 });

@@ -222,3 +222,36 @@ body {
     font-size: 12px;
     color: #999;
 }
+
+.list-title {
+    cursor: pointer;
+}
+
+#information-page-inner {
+    font-family: "楷体";
+    font-size: 14px;
+    /*text-shadow: 1px 1px 0 #999;*/
+}
+
+#information-page-inner p, #information-page-inner span {
+    font-family: "楷体";
+    font-size: 14px;
+}
+
+#information-page-inner img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#information-page-inner h2 {
+    font-size: 14px;
+}
+
+#information-page-inner .button {
+    font-family: "微软雅黑";
+}
+
+#information-progress {
+    -webkit-user-select: none;
+}
+

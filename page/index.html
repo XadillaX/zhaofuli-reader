@@ -5,6 +5,7 @@
     <meta name="author" content="小鳥遊死月" />
     <meta charset="UTF-8" />
 
+    <link rel="stylesheet" href="../assets/buttons/css/buttons.css" />
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
     <link rel="stylesheet" href="../assets/css/nanoscroller.css" type="text/css" />
@@ -17,6 +18,8 @@
     <link rel="stylesheet" href="../assets/vex/css/vex.css" />
     <link rel="stylesheet" href="../assets/vex/css/vex-theme-flat-attack.css" />
 
+    <script src="../assets/buttons/js/buttons.js"></script>
+    <script src="../assets/js/jquery.lazyload.min.js"></script>
     <script src="../assets/js/jquery.pin.min.js"></script>
     <script src="../assets/js/jquery.nanoscroller.min.js"></script>
     <script src="../assets/js/say/jquery.say.js"></script>
@@ -111,6 +114,7 @@
                             <div id="list-container" class="col-xs-8">
 
                             </div>
+
                             <div class="col-xs-4">
                                 <div id="top-articles">
                                     <div class="panel panel-default">
@@ -122,6 +126,28 @@
                                 </div>
 
                                 <div id="top-articles-alignment" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="information-page-wrapper" style="display: none;">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row">
+                                <div class="col-xs-4"></div>
+
+                                <div id="information-page" class="col-xs-8">
+                                    <div id="information-page-inner"></div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="information-progress" class="progress progress-striped active">
+                                                <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -18,10 +18,12 @@ TopArticles.prototype._showTopArticles = function(list) {
     obj = obj.find("ul");
 
     for(var i = 0; i < list.length; i++) {
-        var html = "<li><a target='_blank' href='" + list[i].url + "' alt='" + list[i].title + "'>" + list[i].title +
+        var html = "<li><a class='top-articles-a' target='_blank' href='" + list[i].url + "' alt='" + list[i].title + "'>" + list[i].title +
             "</a>" + "<p>" + list[i].summary + "</p>" + "</li>";
         obj.append(html);
     }
+
+    this.type.emit("topLoaded");
 };
 
 TopArticles.prototype.load = function() {

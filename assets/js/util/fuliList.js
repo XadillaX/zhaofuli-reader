@@ -24,6 +24,17 @@ var FuliList = function(win, jquery, fuliType) {
 };
 
 /**
+ * 隐藏
+ */
+FuliList.prototype.hide = function() {
+    this.object.parent().css("display", "none");
+};
+
+FuliList.prototype.show = function() {
+    this.object.parent().css("display", "block");
+};
+
+/**
  * 解析列表
  * @param html
  * @returns {Array}
@@ -81,6 +92,8 @@ FuliList.prototype.insertDate = function(cache, item) {
  * @param item
  */
 FuliList.prototype.addItem = function(cache, item) {
+    var self = this;
+
     var html = "<div class='row fuli-item-object'></div>";
     cache.addItem(html);
     item.object = cache.object.find(".fuli-item-object:last");
@@ -92,11 +105,12 @@ FuliList.prototype.addItem = function(cache, item) {
 
     html = '<div class="col-xs-4">' +
         '       <a class="to-fancy" href="' + item.image + '" title="' + item.title + '">' +
-        '           <img src="' + item.image + '" alt="' + item.title + '" class="img-thumbnail" /><div class="width-flag" style="width: 100%;"></div>' +
+        '           <img src="' + item.image + '" alt="' + item.title + '" class="img-thumbnail lazy" />' +
+        '           <div class="width-flag" style="width: 100%;"></div>' +
         '       </a>' +
         '   </div>' +
         '   <div class="col-xs-8">' +
-        '       <h3>' + item.title + '</h3>' +
+        '       <h3 class="list-title" value="' + item.url + '">' + item.title + '</h3>' +
         '       <p>' + summary + '</p>' +
         '   </div>';
     item.object.html(html);
@@ -105,6 +119,13 @@ FuliList.prototype.addItem = function(cache, item) {
     item.object.find("img").css("width", w + "px");
     item.object.find("img").css("height", (w * 0.75) + "px");
     item.object.css("height", (w * 0.75) + "px");
+
+    $(".list-title").click(function() {
+        var obj = $(this);
+        // console.log(obj.html());
+        self.hide();
+        self.type.emit("openPage", obj.attr("value"), obj.html());
+    });
 
     $(".to-fancy").fancybox({
         helpers: {
@@ -187,12 +208,11 @@ FuliList.prototype.loadMore = function(name) {
                 self.addItem(cache, list[i]);
             }
 
-            cache.object.addClass("animated rollIn");
-
             for(var i = 0; i < list.length; i++) {
                 cache.list.push(list[i]);
             }
 
+            //$("img.lazy").lazyload({ effect: "fadeIn", threshold: 200, skip_invisible: false });
             $(".nano").nanoScroller({ tabIndex: -1 });
             cache.currentPage++;
             cache.loading = false;
@@ -239,6 +259,11 @@ FuliList.prototype._createFuliCache = function(name) {
 FuliList.prototype._switchType = function(name) {
     console.log("选择了 [" + name + "]...");
 
+    // 隐藏 page
+    this.type.emit("hidePage");
+    // 先显示...
+    this.show();
+
     $(".each-type-list").css('display', "none");
 
     if(undefined === this.fuliCache[name]) {
@@ -260,6 +285,17 @@ FuliList.prototype.init = function() {
     var self = this;
     this.type.on("changeType", function(type) {
         self._switchType(type);
+    });
+
+    this.type.on("topLoaded", function() {
+        $(".top-articles-a").click(function() {
+            var obj = $(this);
+
+            self.hide();
+            self.type.emit("openPage", obj.attr("href"), obj.html());
+
+            return false;
+        });
     });
 };
 

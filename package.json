@@ -25,6 +25,7 @@
     "async": "~0.7.0",
     "daily-sentence": "~0.0.1",
     "spidex": "~1.0.5",
-    "sugar": "~1.4.1"
+    "sugar": "~1.4.1",
+    "lru-cache": "~2.5.0"
   }
 }
