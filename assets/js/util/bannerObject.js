@@ -52,6 +52,7 @@ BannerObject.prototype.reposition = function() {
     $("#nav").css("left", $("#list-container-wrapper").offset().left + "px");
     // 右边置顶宽度
     $("#top-articles .panel").css("width", $("#top-articles").parent().width() + "px");
+    $(".information-page-left").css("width", $(".information-page-left ").parent().width() + "px");
 
     // 图片
     var w = $(".width-flag:visible:first").width();

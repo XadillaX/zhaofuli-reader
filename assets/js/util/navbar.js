@@ -29,7 +29,11 @@ Navbar.prototype.init = function() {
         var type = $(this).text();
 
         // 若还是选了这个
-        if(self.type.getCurrent() === type) return;
+        if(self.type.getCurrent() === type) {
+            self.type.emit("hidePage");
+            self.type.emit("showList");
+            return;
+        }
 
         // 设置当前分类
         self.type.setCurrent(type);
@@ -54,8 +58,10 @@ Navbar.prototype.init = function() {
 
         if(values.position > 160) {
             $("#top-articles").addClass("top-articles-fixed");
+            $('.information-page-left').addClass("top-articles-fixed");
         } else {
             $("#top-articles").removeClass("top-articles-fixed");
+            $('.information-page-left').removeClass("top-articles-fixed");
         }
 
         // Banner条的透明度
@@ -66,6 +72,9 @@ Navbar.prototype.init = function() {
             var opacity = 1 - (values.position / maxDown);
             $("#banner-object").stop().fadeTo("normal", opacity);
         }
+
+        // 记录当下滚动位置
+        self.type.emit("updateScrollbarPosition", values.position);
     });
 };
 

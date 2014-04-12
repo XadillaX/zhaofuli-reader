@@ -5,6 +5,7 @@
 body {
     background-color: #fff;
     overflow-x: hidden;
+    -webkit-user-select: none;
 }
 
 .fl { float: left; }
@@ -12,6 +13,8 @@ body {
 .cl { clear: both; }
 
 .vex { -webkit-user-select: none; }
+
+.to-fancy { -webkit-user-select: none; }
 
 /** 标题栏 */
 .title-bar {
@@ -247,11 +250,54 @@ body {
     font-size: 14px;
 }
 
-#information-page-inner .button {
+.button, .button-wrap {
     font-family: "微软雅黑";
+    -webkit-user-select: none;
 }
 
 #information-progress {
     -webkit-user-select: none;
 }
 
+.information-page-left .panel {
+    margin-top: 10px;
+    -webkit-user-select: none;
+    margin-bottom: 10px;
+}
+
+a.button-block:hover {
+    color: #999;
+    text-decoration: none;
+}
+
+#information-page-inner {
+    -webkit-user-select: text;
+}
+
+#information-page-inner-title {
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#information-page-inner-title p {
+    font-size: 12px;
+    -webkit-user-select: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#information-page-inner-body, #information-page-inner-body p, #information-page-inner-body span {
+    text-shadow: 0 1px 1px #999;
+}
+
+#information-page-next .panel-heading, #information-page-prev .panel-heading {
+    text-shadow: 0 1px 1px #fff;
+}
+
+#information-page-next a, #information-page-prev a {
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+}

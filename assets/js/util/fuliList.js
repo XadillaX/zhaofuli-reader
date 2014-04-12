@@ -32,6 +32,25 @@ FuliList.prototype.hide = function() {
 
 FuliList.prototype.show = function() {
     this.object.parent().css("display", "block");
+
+    var self = this;
+    var currentType = self.type.getCurrent();
+    if(!self.fuliCache[currentType]) return;
+
+//    var cache = self.fuliCache[currentType];
+//
+//    cache.object.removeClass("animated rollIn");
+//    cache.object.addClass("animated rollIn");
+//    cache.object.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+//        //console.log("fladksjflasdkjf");
+//        if(cache.position) {
+//            $(".nano").nanoScroller({ scrollTop: cache.position });
+//        }
+//    });
+
+    if(self.fuliCache[currentType].scrollPosition) {
+        $(".nano").nanoScroller({ scrollTop: self.fuliCache[currentType].scrollPosition });
+    }
 };
 
 /**
@@ -213,6 +232,13 @@ FuliList.prototype.loadMore = function(name) {
             }
 
             //$("img.lazy").lazyload({ effect: "fadeIn", threshold: 200, skip_invisible: false });
+            cache.object.addClass("animated wobble");
+            cache.object.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                if(cache.position) {
+                    $(".nano").nanoScroller({ scrollTop: cache.position });
+                }
+            });
+
             $(".nano").nanoScroller({ tabIndex: -1 });
             cache.currentPage++;
             cache.loading = false;
@@ -296,6 +322,20 @@ FuliList.prototype.init = function() {
 
             return false;
         });
+    });
+
+    this.type.on("showList", function() {
+        self.show();
+    });
+
+    this.type.on("updateScrollbarPosition", function(position) {
+        if(self.object.parent().css("display") !== "none") {
+            var currentType = self.type.getCurrent();
+            //console.log(self.fuliCache);
+            if(!self.fuliCache[currentType]) return;
+
+            self.fuliCache[currentType].scrollPosition = position;
+        }
     });
 };
 

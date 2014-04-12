@@ -32,8 +32,8 @@ $(function() {
     var topArticles = new TopArticles(win, $, fuliType);
     topArticles.load();
 
-    var fuliPage = new FuliPage(win, $, fuliType);
+    var fuliPage = new FuliPage(gui, win, $, fuliType);
     fuliPage.init();
 
-    win.showDevTools();
+    //win.showDevTools();
 });
