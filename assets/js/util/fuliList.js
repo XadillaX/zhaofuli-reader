@@ -207,7 +207,8 @@ FuliList.prototype.loadMore = function(name) {
             self.type.emit("alert", error, error.stripTags());
         } else {
             cache.setProgressPercent(100);
-            cache.progressBar.css("display", "none");
+            cache.hideProgress();
+            //cache.progressBar.css("display", "none");
 
             // 载入到页面，并且加入到缓存
             // cache.addItem("<div class='row'><div class='col-md-12'><pre>" + JSON.stringify(list, null, 2) + "</pre></div></div>");
@@ -234,12 +235,15 @@ FuliList.prototype.loadMore = function(name) {
             //$("img.lazy").lazyload({ effect: "fadeIn", threshold: 200, skip_invisible: false });
             cache.object.addClass("animated wobble");
             cache.object.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                if(cache.position) {
-                    $(".nano").nanoScroller({ scrollTop: cache.position });
+//                console.log("出来了出来了！");
+//                console.log(cache.name);
+                if(cache.scrollPosition) {
+                    //console.log(cache.scrollPosition);
+                    $(".nano").nanoScroller({ scrollTop: cache.scrollPosition });
                 }
             });
 
-            $(".nano").nanoScroller({ tabIndex: -1 });
+            $(".nano").nanoScroller({ tabIndex: -1, preventPageScrolling: true });
             cache.currentPage++;
             cache.loading = false;
         }
@@ -247,7 +251,7 @@ FuliList.prototype.loadMore = function(name) {
 };
 
 FuliList.prototype._createFuliCache = function(name) {
-    this.fuliCache[name] = { currentPage: 0, id: Date.create() / 1, list: [], loading: false };
+    this.fuliCache[name] = { name: name, currentPage: 0, id: Date.create() / 1, list: [], loading: false };
     this.object.append("<div class='each-type-list' id='type-" + this.fuliCache[name].id + "' style='display: block;'></div>");
     this.fuliCache[name].object = $("#type-" + this.fuliCache[name].id);
 
@@ -261,8 +265,17 @@ FuliList.prototype._createFuliCache = function(name) {
             </div>\
         </div></div></div>');
 
+
     this.fuliCache[name].progressBar = this.fuliCache[name].object.find(".progress");
     this.fuliCache[name].itemsWrapper = this.fuliCache[name].object.find(".items-wrapper");
+
+    this.fuliCache[name].showProgress = function() {
+        this.progressBar.css("display", "block");
+    };
+
+    this.fuliCache[name].hideProgress = function() {
+        this.progressBar.css("display", "none");
+    };
 
     this.fuliCache[name].setProgressPercent = function(percent) {
         this.progressBar.find(".progress-bar").css("width", percent + "%");
@@ -298,6 +311,11 @@ FuliList.prototype._switchType = function(name) {
     } else {
         $("#type-" + this.fuliCache[name].id).css("display", "block");
 
+//        if(this.fuliCache[name].scrollPosition) {
+//            $(".nano").nanoScroller({ scrollTop: this.fuliCache[name].scrollPosition });
+//            console.log("滚动条位置：" + this.fuliCache[name].scrollPosition);
+//        }
+
         if(!this.fuliCache[name].list.length) {
             this.loadMore(name);
         }
@@ -328,13 +346,22 @@ FuliList.prototype.init = function() {
         self.show();
     });
 
-    this.type.on("updateScrollbarPosition", function(position) {
+    this.type.on("updateScrollbarPosition", function(position, maximum) {
         if(self.object.parent().css("display") !== "none") {
             var currentType = self.type.getCurrent();
             //console.log(self.fuliCache);
             if(!self.fuliCache[currentType]) return;
 
+            console.log("当前位置：" + position + "；最高位置：" + maximum);
+
+            // 如果小于原高度就算了
+            if(self.fuliCache[currentType].maxPosition > maximum) {
+                console.log("原最大位置：" + self.fuliCache[currentType].maxPosition + "；现最大位置：" + maximum);
+                return;
+            }
+
             self.fuliCache[currentType].scrollPosition = position;
+            self.fuliCache[currentType].maxPosition = maximum;
         }
     });
 };

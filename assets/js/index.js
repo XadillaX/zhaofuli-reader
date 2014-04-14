@@ -26,7 +26,7 @@ $(function() {
     var fuliList = new FuliList(win, $, fuliType);
     fuliList.init();
 
-    var navbar = new Navbar(win, $, fuliType);
+    var navbar = new Navbar(win, $, fuliType, fuliList);
     navbar.init();
 
     var topArticles = new TopArticles(win, $, fuliType);
@@ -35,5 +35,5 @@ $(function() {
     var fuliPage = new FuliPage(gui, win, $, fuliType);
     fuliPage.init();
 
-    //win.showDevTools();
+    win.showDevTools();
 });

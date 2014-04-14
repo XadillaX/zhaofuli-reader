@@ -8,14 +8,17 @@ var events = require("events");
  * 导航栏
  * @param win
  * @param jquery
+ * @param fuliType
+ * @param fuliList
  * @constructor
  */
-var Navbar = function(win, jquery, fuliType) {
+var Navbar = function(win, jquery, fuliType, fuliList) {
     $ = jquery;
     this.win = win;
     this.object = $("#nav");
     this.type = fuliType;
     this.type.setCurrent("全部");
+    this.list = fuliList;
 };
 
 /**
@@ -74,7 +77,28 @@ Navbar.prototype.init = function() {
         }
 
         // 记录当下滚动位置
-        self.type.emit("updateScrollbarPosition", values.position);
+        self.type.emit("updateScrollbarPosition", values.position, values.maximum);
+
+        // 滚动条滚动到底部了，那么要下拉刷新
+        if(values.position + 20 >= values.maximum) {
+            var showState = $("#list-container").parent().css("display");
+            if(showState === "none") {
+                return;
+            }
+
+            // 当前类型以及是否在载入...
+            var current = self.type.getCurrent();
+            var cache = self.list.fuliCache[current];
+            if(!cache || cache.loading) {
+                return;
+            }
+
+            // 显示loading
+            cache.showProgress();
+
+            // 当前类型载入更多
+            self.list.loadMore(current);
+        }
     });
 };
 
