@@ -287,6 +287,15 @@ a.button-block:hover {
     margin-bottom: 0;
 }
 
+#information-page-inner-body {
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 10px;
+}
+
+#information-page-inner-comment {
+    border-top: 1px solid #ccc;
+}
+
 #information-page-inner-body, #information-page-inner-body p, #information-page-inner-body span {
     text-shadow: 0 1px 1px #999;
 }

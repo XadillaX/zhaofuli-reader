@@ -9,6 +9,10 @@ var FuliList = require("../assets/js/util/fuliList");
 var FuliPage = require("../assets/js/util/fuliPage");
 var TopArticles = require("../assets/js/util/topArticles");
 
+function alert(msg) {
+    vex.dialog.alert(msg);
+}
+
 $(function() {
     $(".nano").nanoScroller({ tabIndex: -1 });
 
@@ -35,5 +39,5 @@ $(function() {
     var fuliPage = new FuliPage(gui, win, $, fuliType);
     fuliPage.init();
 
-    win.showDevTools();
+    //win.showDevTools();
 });

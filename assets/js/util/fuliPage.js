@@ -115,6 +115,13 @@ FuliPage.prototype._fillPage = function(info) {
         }
     });
 
+    // 评论
+    if($("#information-page-inner-comment").attr("current") !== info.comment) {
+        $("#information-page-inner-comment").attr("current", info.comment);
+        $("#information-page-inner-comment").html(info.comment);
+        console.log(info.comment);
+    }
+
     $(".to-fancy").fancybox({
         helpers: {
             title : {
@@ -136,8 +143,6 @@ FuliPage.prototype._fillPage = function(info) {
             title: "找福利阅读器 ❤ 内置浏览器"
         });
     });
-
-    //console.log(this.inner.html());
 };
 
 FuliPage.prototype._loadPage = function(url, callback) {
@@ -204,6 +209,15 @@ FuliPage.prototype._loadPage = function(url, callback) {
                 title   : nextResult[2].trim()
             };
         }
+
+        // 评论们啊哈哈
+        var commentReg = /<div class="relates">[\s\S]*?<\/div>([\s\S]*)<div id="ds-ssr">/;
+        var commentResult = commentReg.exec(html);
+        if(!commentResult || commentResult.length < 2) {
+            callback(new Error("评论解析错误。"));
+            return;
+        }
+        info.comment = commentResult[1].trim();
 
         // 加入缓存
         self.cache.set(url, info);
