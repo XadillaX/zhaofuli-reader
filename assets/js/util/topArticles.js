@@ -28,12 +28,13 @@ TopArticles.prototype._showTopArticles = function(list) {
 
 TopArticles.prototype.load = function() {
     var self = this;
-    var reg1 = /<li class="item"><a href="(.*?)"><img src="(.*?)" alt="(.*?)" \/><h3>(.*)<\/h3><p class="muted">\s*([\s\S]*?)<\/p><\/a><\/li>/g;
-    var reg2 = /<li class="item"><a href="(.*?)"><img src="(.*?)" alt="(.*?)" \/><h3>(.*)<\/h3><p class="muted">\s*([\s\S]*?)<\/p><\/a><\/li>/;
+    var reg1 = /<li class="item"><a href="(.*?)"><img src="(.*?)" alt="(.*?)" \/><h3>(.*?)<\/h3><p class="muted">\s*([\s\S]*?)<\/p><\/a><\/li>/g;
+    var reg2 = /<li class="item"><a href="(.*?)"><img src="(.*?)" alt="(.*?)" \/><h3>(.*?)<\/h3><p class="muted">\s*([\s\S]*?)<\/p><\/a><\/li>/;
 
     var url = "http://zhaofuli.net/";
     spidex.get(url, function(html, status, respHeader) {
         var regArray = html.match(reg1);
+        console.log(regArray);
 
         // 正则解析错误
         if(!regArray) {

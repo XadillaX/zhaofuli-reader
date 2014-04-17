@@ -211,13 +211,13 @@ FuliPage.prototype._loadPage = function(url, callback) {
         }
 
         // 评论们啊哈哈
-        var commentReg = /<div class="relates">[\s\S]*?<\/div>([\s\S]*)<div id="ds-ssr">/;
+        var commentReg = /<div class="relates">[\s\S]*?<\/div>[\s]*<script type="text\/javascript">([\s\S]*)<div id="ds-ssr">/;
         var commentResult = commentReg.exec(html);
         if(!commentResult || commentResult.length < 2) {
             callback(new Error("评论解析错误。"));
             return;
         }
-        info.comment = commentResult[1].trim();
+        info.comment = '<script type="text/javascript">' + commentResult[1].trim();
 
         // 加入缓存
         self.cache.set(url, info);
