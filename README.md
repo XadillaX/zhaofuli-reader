@@ -6,8 +6,8 @@
 Release
 -------
 
-+ Mac: [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
-+ Windows: [http://pan.baidu.com/s/1pJwJTzH](http://pan.baidu.com/s/1pJwJTzH) with code `p4pz`.
++ Mac (Build 20140129): [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
++ Windows (Build 20140417): [http://pan.baidu.com/s/1o6kCDsu](http://pan.baidu.com/s/1o6kCDsu) with code `penn`.
 
 开源许可
 -------------------
