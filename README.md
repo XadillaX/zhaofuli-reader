@@ -7,7 +7,7 @@ Release
 -------
 
 + Mac **(Build 20140129)**: [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
-+ Windows **(Build 20140417)**: [http://pan.baidu.com/s/1o6kCDsu](http://pan.baidu.com/s/1o6kCDsu) with code `penn`.
++ Windows **(Build 20140417)**: [http://pan.baidu.com/s/1bn9vlJt](http://pan.baidu.com/s/1bn9vlJt) with code `efxc`.
 
 开源许可
 -------------------
