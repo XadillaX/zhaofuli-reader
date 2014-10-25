@@ -3,11 +3,10 @@
 
 该应用基于 `node-webkit` 构建。
 
-Release
--------
+公告
+-------------------
 
-+ Mac **(Build 20140129)**: [http://pan.baidu.com/s/1o60Rjb8](http://pan.baidu.com/s/1o60Rjb8) with code `ft0c`.
-+ Windows **(Build 20140417)**: [http://pan.baidu.com/s/1bn9vIJt](http://pan.baidu.com/s/1bn9vIJt) with code `efxc`.
+新版找福利重构中。
 
 开源许可
 -------------------
