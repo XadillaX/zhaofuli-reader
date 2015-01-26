@@ -13,9 +13,10 @@
     "toolbar": false,
     "frame": false,
     "resizable": true,
-    "width": 640,
-    "height": 480,
-    "min_width": 550,
+    "width": 480,
+    "height": 640,
+    "min_width": 480,
+    "min_height": 320,
     "position": "center"
   },
   "webkit": {
