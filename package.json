@@ -10,7 +10,7 @@
   "window": {
     "title": "找福利",
     "icon": "link.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": false,
     "resizable": true,
     "width": 640,
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.1.0",
     "gulp-csso": "^0.2.9",
     "gulp-if": "^1.2.5",
     "gulp-load-plugins": "^0.8.0",
