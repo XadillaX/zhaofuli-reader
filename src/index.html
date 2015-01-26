@@ -5,24 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>找福利阅读器</title>
+
+    <!-- build:css styles/prestyle.css -->
+    <link href="styles/font.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
-   
-    <!-- build:js scripts/vendor.js -->
+    <link href="styles/flatly.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/bundle.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbuild -->
-    
-    <!-- build:js scripts/fbbk-json.js -->
     <script src="bower_components/fbbk-json/index.js"></script>
     <!-- endbuild -->
-    
+
     <!-- build:js scripts/react.js -->
     <script src="bower_components/react/react-with-addons.js"></script>
     <script src="bower_components/react/JSXTransformer.js"></script>
     <!-- endbuild -->
 </head>
 <body>
-    <h1>Hello, world!</h1>
+    <nav class="navbar navbar-fixed-top navbar-inverse whole-title-bar">
+        <div class="navbar-header">
+            <span id="whole-title" class="navbar-brand">找福利阅读器</span>
+        </div>
+    </nav>
+
+    <div class="whole-frame">
+        <div class="left-border whole-v-border fl"></div>
+        <div class="main-page fl">
+            <h1>Hello world!</h1>
+        </div>
+        <div class="right-border whole-v-border fr"></div>
+        <div class="cl"></div>
+        <div class="bottom-border"></div>
+    </div>
+
+    <script>
+    var gui = require("nw.gui");
+    var win = gui.Window.get();
+
+    function resizeBorder(w, h) {
+        $(".whole-v-border").css("height", (h - 50 - 5) + "px");
+        $(".bottom-border").css("width", w + "px");
+    }
+
+    $(function() {
+        resizeBorder(win.width, win.height);
+
+        win.on("resize", function(w, h) {
+            resizeBorder(w, h);
+        });
+
+        $(document).keypress(function(e) {
+            if(e.ctrlKey && e.keyCode === 4) {
+                win.showDevTools();
+            }
+
+            if(e.ctrlKey && e.keyCode === 18) {
+                window.location.reload();
+            }
+        });
+    });
+    </script>
 </body>
 </html>
