@@ -1,17 +1,20 @@
 {
-  "main": "page/index.html",
+  "main": "dist/index.html",
   "name": "zhaofuli",
-  "description": "Zhaofuli reader.",
+  "description": "Yet another simple reader for Zhaofuli.org.",
   "version": "2.0.0",
-  "keywords": [ "zhaofuli", "av" ],
+  "keywords": [
+    "zhaofuli",
+    "av"
+  ],
   "window": {
     "title": "找福利",
     "icon": "link.png",
-    "toolbar": false,
+    "toolbar": true,
     "frame": false,
     "resizable": true,
-    "width": 650,
-    "height": 700,
+    "width": 640,
+    "height": 480,
     "min_width": 550,
     "position": "center"
   },
@@ -19,5 +22,31 @@
     "plugin": true
   },
   "dependencies": {
-  }
+    "bower": "^1.3.12",
+    "del": "^1.1.1",
+    "spidex": "^2.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-csso": "^0.2.9",
+    "gulp-if": "^1.2.5",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-minify-html": "^0.1.8",
+    "gulp-size": "^1.2.0",
+    "gulp-stylus": "^2.0.0",
+    "gulp-uglify": "^1.0.2",
+    "gulp-useref": "^1.1.1",
+    "gulp-util": "^3.0.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XadillaX/zhaofuliReader.git"
+  },
+  "author": "XadillaX",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/XadillaX/zhaofuliReader/issues"
+  },
+  "homepage": "https://github.com/XadillaX/zhaofuliReader"
 }
