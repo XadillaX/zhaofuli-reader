@@ -1,7 +1,9 @@
 @import "default.styl"
 
-window-border-thick = 5px
-window-border-color = #18bc9c
+window-border-thick = 2px
+window-border-color = #222
+window-border-color-lighter = #555
+default-font-family = "Arial", "sans-serif", "微软雅黑", "黑体", "宋体"
 
 body
     overflow hidden
@@ -13,15 +15,16 @@ body
 .whole-title-bar
     -webkit-app-region drag
     -webkit-user-select none
+    box-shadow 0px 2px 2px #aaa
 
 #whole-title
     font-family wygtfs, default-font-family
 
 .whole-frame
+    width 100%
     margin-top 50px
 
 .whole-v-border
-    height 100%
     width window-border-thick
     background-color window-border-color
 
@@ -29,3 +32,12 @@ body
     width 100%
     height window-border-thick
     background-color window-border-color
+
+.main-frame
+    width 100%
+    height 100%
+    background url(../images/banner.png) top center no-repeat
+
+.banner-object
+    height 240px
+
