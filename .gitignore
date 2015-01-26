@@ -19,3 +19,5 @@ node_modules/*
 .daily-sen-db
 
 dist/*
+
+src/bower_components
