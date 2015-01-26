@@ -45,8 +45,20 @@ gulp.task("font", function() {
         .pipe($.size());
 });
 
+gulp.task("image", function() {
+    return gulp.src("src/images/**/*")
+        .pipe(gulp.dest("dist/images"))
+        .pipe($.size());
+});
+
+gulp.task("script", function() {
+    return gulp.src("src/scripts/**/*.js")
+        .pipe(gulp.dest("dist/scripts"))
+        .pipe($.size());
+});
+
 // a bundle of tasks
-gulp.task("bundle", [ "bower", "view", "styl", "font" ]);
+gulp.task("bundle", [ "bower", "view", "styl", "script", "font", "image" ]);
 
 // clean
 gulp.task("clean", function() {
