@@ -1,2 +1,0 @@
-gulp build
-nw .
