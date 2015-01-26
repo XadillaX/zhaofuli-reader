@@ -17,3 +17,5 @@ node_modules/*
 
 .idea
 .daily-sen-db
+
+dist/*
