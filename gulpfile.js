@@ -57,8 +57,15 @@ gulp.task("script", function() {
         .pipe($.size());
 });
 
+gulp.task("jsx", function() {
+    return gulp.src("src/scripts/components/**/*.jsx")
+        .pipe(gulp.dest("dist/scripts/react"))
+        .pipe($.size());
+});
+
 // a bundle of tasks
-gulp.task("bundle", [ "bower", "view", "styl", "script", "font", "image" ]);
+gulp.task("bundle", [ "bower", "view", "styl", "script", "jsx", "font", "image" ]);
+gulp.task("bundleBuild", [ "bower", "view", "styl", "script", "jsxToJs", "font", "image" ]);
 
 // clean
 gulp.task("clean", function() {
@@ -66,8 +73,18 @@ gulp.task("clean", function() {
     return del.sync(dirs);
 });
 
+gulp.task("jsxToJs", function() {
+    return gulp.src("src/scripts/components/**/*.jsx")
+        .pipe($.react())
+        .pipe($.rename(function(p) {
+            p.extname = ".jsx";
+        }))
+        .pipe(gulp.dest("dist/scripts/react"))
+        .pipe($.size());
+});
+
 // compress scripts
-gulp.task("compressScript", [ "bundle" ], function() {
+gulp.task("compressScript", [ "bundleBuild" ], function() {
     var assets = $.useref.assets();
     return gulp.src("dist/**/*.html")
         .pipe(assets)
@@ -100,6 +117,7 @@ gulp.task("watch", [ "bundle" ], function() {
     gulp.watch("src/**/*.html", [ "view" ]);
     gulp.watch("src/styles/**/*.{styl,css}", [ "styl" ]);
     gulp.watch("src/scripts/**/*.js", [ "script" ]);
+    gulp.watch("src/scripts/components/**/*.jsx", [ "jsx" ]);
 });
 
 // set default task to `watch`
