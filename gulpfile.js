@@ -98,8 +98,10 @@ gulp.task("build", [ "clean", "compress" ], function() {
 // watch
 gulp.task("watch", [ "bundle" ], function() {
     gulp.watch("src/**/*.html", [ "view" ]);
-    gulp.watch("src/styles/**/*.styl", [ "styl" ]);
+    gulp.watch("src/styles/**/*.{styl,css}", [ "styl" ]);
+    gulp.watch("src/scripts/**/*.js", [ "script" ]);
 });
 
 // set default task to `watch`
 gulp.task("default", [ "watch" ]);
+

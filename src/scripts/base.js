@@ -17,7 +17,10 @@ function resizeBorder(w, h) {
     var trueHeight = h - titleThick - boardThick;
     $(".whole-v-border").css("height", trueHeight + "px");
     $(".bottom-border").css("width", w + "px");
-    $(".main-frame").css({ height: trueHeight + "px", width: (w - 2 * boardThick) + "px" });
+    $(".main-frame").css({
+        height: trueHeight + "px",
+        width: (w - 2 * boardThick) + "px"
+    });
 }
 
 $(function() {
@@ -40,4 +43,3 @@ $(function() {
         }
     });
 });
-

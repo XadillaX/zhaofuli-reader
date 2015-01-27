@@ -23,4 +23,6 @@ dist/*
 src/bower_components
 
 *.swp
+.DS_Store
+nwjs.app
 
