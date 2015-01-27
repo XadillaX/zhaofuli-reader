@@ -6,6 +6,12 @@ var $ = require("gulp-load-plugins")({
 });
 var del = require("del");
 
+gulp.task("lib", function() {
+	return gulp.src("src/lib/**/*")
+		.pipe(gulp.dest("dist/lib"))
+		.pipe($.size());
+});
+
 // bootstrap font
 gulp.task("bsFont", function() {
     gulp.src(
@@ -59,13 +65,13 @@ gulp.task("script", function() {
 
 gulp.task("jsx", function() {
     return gulp.src("src/scripts/components/**/*.jsx")
-        .pipe(gulp.dest("dist/scripts/react"))
+        .pipe(gulp.dest("dist/scripts"))
         .pipe($.size());
 });
 
 // a bundle of tasks
-gulp.task("bundle", [ "bower", "view", "styl", "script", "jsx", "font", "image" ]);
-gulp.task("bundleBuild", [ "bower", "view", "styl", "script", "jsxToJs", "font", "image" ]);
+gulp.task("bundle", [ "bower", "view", "styl", "script", "jsx", "font", "image", "lib" ]);
+gulp.task("bundleBuild", [ "bower", "view", "styl", "script", "jsxToJs", "font", "image", "lib" ]);
 
 // clean
 gulp.task("clean", function() {
@@ -118,6 +124,8 @@ gulp.task("watch", [ "bundle" ], function() {
     gulp.watch("src/styles/**/*.{styl,css}", [ "styl" ]);
     gulp.watch("src/scripts/**/*.js", [ "script" ]);
     gulp.watch("src/scripts/components/**/*.jsx", [ "jsx" ]);
+    gulp.watch("src/lib/**/*", [ "lib" ]);
+    gulp.watch("src/images/**/*", [ "image" ]);
 });
 
 // set default task to `watch`
