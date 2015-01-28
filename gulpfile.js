@@ -51,18 +51,21 @@ gulp.task("font", function() {
         .pipe($.size());
 });
 
+// move images
 gulp.task("image", function() {
     return gulp.src("src/images/**/*")
         .pipe(gulp.dest("dist/images"))
         .pipe($.size());
 });
 
+// move js scripts
 gulp.task("script", function() {
     return gulp.src("src/scripts/**/*.js")
         .pipe(gulp.dest("dist/scripts"))
         .pipe($.size());
 });
 
+// move jsx files
 gulp.task("jsx", function() {
     return gulp.src("src/scripts/components/**/*.jsx")
         .pipe(gulp.dest("dist/scripts"))
@@ -85,7 +88,7 @@ gulp.task("jsxToJs", function() {
         .pipe($.rename(function(p) {
             p.extname = ".jsx";
         }))
-        .pipe(gulp.dest("dist/scripts/react"))
+        .pipe(gulp.dest("dist/scripts"))
         .pipe($.size());
 });
 

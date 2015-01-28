@@ -14,6 +14,7 @@ exports.get = function(callback) {
         var types = [ { name: "所有", url: config.baseUri, active: true } ];
         $(".nav > li.menu-item > a").each(function() {
             var a = $(this);
+            if(a.text() === "论坛") return;
             var object = {
                 name: a.text(),
                 url: a.attr("href")

@@ -1,16 +1,24 @@
 $(function() {
+    var reactLib = require("./lib/react");
     var typeGetter = require("./lib/type/getter");
+    var LeftMenuPiece;
+    var LeftMenu;
 
-    var LeftMenuPiece = React.createClass({
+    LeftMenuPiece = React.createClass({
         render: function() {
             return (
-                <li className={this.props.active ? "active" : ""}><a href="#">{this.props.name}</a></li>
+                <li onClick={this.props.onClick} className={this.props.active ? "active" : ""}>
+                    <a href="#">
+                        {this.props.name}
+                    </a>
+                </li>
             );
         }
     });
 
-    var LeftMenu = React.createClass({
+    LeftMenu = React.createClass({
         getInitialState: function() {
+            reactLib.addComponent("LeftMenu", this);
             return { types: [] };
         },
         
@@ -27,7 +35,17 @@ $(function() {
         },
         
         handleClick: function(idx) {
-            alert("1");
+            var self = this;
+            this.setState({
+                types: self.state.types.map(function(n, i) {
+                    if(i !== idx) delete n.active;
+                    else {
+                        n.active = true;
+                        console.log(n.name + " is selected.");
+                    }
+                    return n;
+                })
+            });
         },
         
         render: function() {
@@ -42,7 +60,13 @@ $(function() {
                         {this.state.types.map(function(type, i) {
                             var handleClick = self.handleClick.bind(self, i);
                             return (
-                                <LeftMenuPiece key={"types-" + i} onClick={handleClick} active={type.active} name={type.name} url={type.url} />
+                            <LeftMenuPiece
+                                key={"types-" + i}
+                                onClick={handleClick}
+                                active={type.active}
+                                name={type.name}
+                                url={type.url}
+                            />
                             );
                         })}
                     </ul>
@@ -56,3 +80,4 @@ $(function() {
         document.getElementById("rct-left-menu")
     );
 });
+
