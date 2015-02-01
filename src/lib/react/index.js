@@ -33,4 +33,3 @@ exports.getComponent = function(name) {
 exports.delComponent = function(name) {
     delete _components[name];
 };
-

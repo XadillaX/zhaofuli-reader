@@ -36,6 +36,10 @@ $(function() {
         
         handleClick: function(idx) {
             var self = this;
+            if(this.state.types[idx].active) return;
+            var wrapper = reactLib.getComponent("ItemListWrapper");
+            if(!wrapper) return;
+
             this.setState({
                 types: self.state.types.map(function(n, i) {
                     if(i !== idx) delete n.active;
@@ -46,6 +50,8 @@ $(function() {
                     return n;
                 })
             });
+
+            wrapper.selectCat(this.state.types[idx].url, 1);
         },
         
         render: function() {
@@ -80,4 +86,3 @@ $(function() {
         document.getElementById("rct-left-menu")
     );
 });
-

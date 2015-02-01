@@ -11,6 +11,7 @@
     <link href="styles/font.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="styles/bubble.css" rel="stylesheet">
+    <link href="bower_components/flickity/dist/flickity.css" rel="stylesheet">
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
@@ -18,10 +19,13 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/bundle.js -->
+    <script src="bower_components/sugar/release/sugar-full.development.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/fbbk-json/index.js"></script>
     <script src="bower_components/Snap.svg/dist/snap.svg.js"></script>
+    <script src="bower_components/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="bower_components/flickity/dist/flickity.pkgd.js"></script>
     <script src="scripts/classie.js"></script>
     <script src="scripts/bubble.js"></script>
     <!-- endbuild -->
@@ -60,7 +64,7 @@
         <div class="right-border whole-v-border fr"></div>
 
         <div class="main-frame fl content-wrap">
-            <div class="banner-object"></div>
+            <div id="item-list" class="item-list container"></div>
         </div>
 
         <div class="cl"></div>
@@ -68,7 +72,10 @@
     </div>
 
     <!-- build:js scripts/react-components.js -->
+    <script type="text/jsx" src="scripts/common/flickity.jsx"></script>
+    <script type="text/jsx" src="scripts/common/progress_bar.jsx"></script>
     <script type="text/jsx" src="scripts/left_menu.jsx"></script>
+    <script type="text/jsx" src="scripts/item_list.jsx"></script>
     <!-- endbuild -->
 </body>
 </html>

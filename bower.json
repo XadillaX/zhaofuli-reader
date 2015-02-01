@@ -26,6 +26,9 @@
     "react": "~0.12.2",
     "fbbk-json": "~0.0.5",
     "pikabu": "~0.2.2",
-    "Snap.svg": "~0.3.0"
+    "Snap.svg": "~0.3.0",
+    "sugar": "~1.4.1",
+    "flickity": "~0.1.0",
+    "imagesloaded": "~3.1.8"
   }
 }
