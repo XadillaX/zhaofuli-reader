@@ -1,4 +1,5 @@
 $(function() {
+    var gui = require("nw.gui");
     var reactLib = require("./lib/react");
     var typeGetter = require("./lib/type/getter");
     var LeftMenuPiece;
@@ -39,6 +40,10 @@ $(function() {
             if(this.state.types[idx].active) return;
             var wrapper = reactLib.getComponent("ItemListWrapper");
             if(!wrapper) return;
+
+            if(this.state.types[idx].extra) {
+                return gui.Shell.openExternal(this.state.types[idx].url);
+            }
 
             this.setState({
                 types: self.state.types.map(function(n, i) {

@@ -66,6 +66,9 @@ $(function() {
             listGetter.get(this.props.url, this.props.page, function(err, items) {
                 if(err) {
                     console.warn(err);
+                    sweetAlert("啊吖吖", err.message, "error");
+                    self.setState({ inited: true, items: [] });
+
                     return;
                 }
 

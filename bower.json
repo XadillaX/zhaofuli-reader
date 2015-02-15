@@ -29,6 +29,7 @@
     "Snap.svg": "~0.3.0",
     "sugar": "~1.4.1",
     "flickity": "~0.1.0",
-    "imagesloaded": "~3.1.8"
+    "imagesloaded": "~3.1.8",
+    "sweetalert": "~0.4.2"
   }
 }

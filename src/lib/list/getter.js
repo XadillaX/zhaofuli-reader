@@ -23,7 +23,7 @@ exports.get = function(baseUri, page, callback) {
     }, function(html, status, respHeader) {
         if(status !== 200 && status !== 304) {
             console.log(respHeader);
-            return callback(new Error("找福利服务器返回了错误的状态码，请稍后再试。" + status));
+            return callback(new Error("找福利服务器返回了错误的状态码 " + status + "，请稍后再试。"));
         }
 
         var $ = cheerio.load(html);
@@ -70,13 +70,16 @@ exports.get = function(baseUri, page, callback) {
             // 标签
             var tags = [];
             $(this).find("span.post-tags a").each(function() {
-                tags.push($(this).text())
+                tags.push($(this).text());
             });
             object.tags = tags;
 
             cards.push(object);
         });
 
+        if(!cards.length) return callback(new Error("没有更多了..."));
+
         callback(undefined, cards);
     }).on("error", callback);
 };
+
