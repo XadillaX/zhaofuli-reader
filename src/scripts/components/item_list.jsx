@@ -8,6 +8,7 @@ $(function() {
     var ItemListWrapper;
     var ItemList;
     var ListItem;
+    var Paginator;
 
     ListItem = React.createClass({
         render: function() {
@@ -19,6 +20,7 @@ $(function() {
             var tags = this.props.item.tags.map(function(tag, idx) {
                 return <span key={"tag-" + idx} style={{ marginRight: "5px" }} className="label label-warning">{tag}</span>;
             });
+
             if(!tags.length) {
                 tags = "-";
             }
@@ -66,6 +68,11 @@ $(function() {
             listGetter.get(this.props.url, this.props.page, function(err, items) {
                 if(err) {
                     console.warn(err);
+
+                    if(err.message.indexOf("ECONNRESET") >= 0) {
+                        err.message = "无法连接到找福利，请确保你的网络正常，或者已翻墙。";
+                    }
+
                     sweetAlert("啊吖吖", err.message, "error");
                     self.setState({ inited: true, items: [] });
 
@@ -103,6 +110,15 @@ $(function() {
         }
     });
 
+    Paginator = React.createClass({
+        render: function() {
+            if(this.props.loading) return <div></div>;
+            else {
+                return <div></div>;
+            }
+        }
+    });
+
     ItemListWrapper = React.createClass({
         /**
          * get initial state
@@ -128,7 +144,10 @@ $(function() {
          */
         render: function() {
             return (
-                <ItemList key={+new Date()} page={this.state.page} url={this.state.url} />
+                <div>
+                    <ItemList key={+new Date()} page={this.state.page} url={this.state.url} />
+                    <Paginator />
+                </div>
             );
         }
     });
@@ -138,3 +157,4 @@ $(function() {
         document.getElementById("item-list")
     );
 });
+
