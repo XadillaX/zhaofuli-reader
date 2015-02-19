@@ -3,7 +3,7 @@
 
 该应用基于 `node-webkit` 构建。
 
-> Happy new year!
+> Happy Chinese new year!
 
 找福利公告
 -------------------
