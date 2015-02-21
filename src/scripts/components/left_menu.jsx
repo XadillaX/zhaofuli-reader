@@ -27,7 +27,8 @@ $(function() {
             var self = this;
             typeGetter.get(function(err, types) {
                 if(err) {
-                    // TODO...
+                    // sweetAlert("啊吖吖", err.message, "error");
+                    self.setState({ types: [ { name: "获取失败，请重试", url: "$RETRY$" } ] });
                     return;
                 }
                 
@@ -40,6 +41,11 @@ $(function() {
             if(this.state.types[idx].active) return;
             var wrapper = reactLib.getComponent("ItemListWrapper");
             if(!wrapper) return;
+
+            if(this.state.types[idx].url === "$RETRY$") {
+                this.setState({ types: [] });
+                return this.componentDidMount();
+            }
 
             if(this.state.types[idx].extra) {
                 return gui.Shell.openExternal(this.state.types[idx].url);

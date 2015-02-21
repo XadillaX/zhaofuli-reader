@@ -7,7 +7,7 @@ exports.get = function(callback) {
         timeout: 60000
     }, function(html, status) {
         if(status !== 200 && status !== 304) {
-            return callback(new Error("找福利服务器返回了错误的状态码，请稍后再试。" + status));
+            return callback(new Error("找福利服务器返回了错误的状态码，请稍后再试。"));
         }
         
         var $ = cheerio.load(html);
