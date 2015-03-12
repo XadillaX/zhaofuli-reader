@@ -1,3 +1,3 @@
 module.exports = {
-    baseUri: "http://zhaofuli.org/"
+    baseUri: "http://zhaofuli.club/"
 };

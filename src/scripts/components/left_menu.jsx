@@ -1,7 +1,7 @@
 $(function() {
     var gui = require("nw.gui");
     var reactLib = require("./lib/react");
-    var typeGetter = require("./lib/type/getter");
+    var metaGetter = require("./lib/meta");
     var LeftMenuPiece;
     var LeftMenu;
 
@@ -25,7 +25,7 @@ $(function() {
         
         componentDidMount: function() {
             var self = this;
-            typeGetter.get(function(err, types) {
+            metaGetter.getCategories(function(err, types) {
                 if(err) {
                     // sweetAlert("啊吖吖", err.message, "error");
                     self.setState({ types: [ { name: "获取失败，请重试", url: "$RETRY$" } ] });
@@ -62,7 +62,7 @@ $(function() {
                 })
             });
 
-            wrapper.selectCat(this.state.types[idx].url, 1);
+            wrapper.selectCat(this.state.types[idx].id, 1);
         },
         
         render: function() {
@@ -83,6 +83,7 @@ $(function() {
                                 active={type.active}
                                 name={type.name}
                                 url={type.url}
+                                id={type.id}
                             />
                             );
                         })}

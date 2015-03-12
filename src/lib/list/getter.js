@@ -1,85 +1,61 @@
 /**
  * Created by XadillaX on 2015/2/1.
  */
+require("../extend");
 var spidex = require("spidex");
 var cheerio = require("cheerio");
 var config = require("../config");
+var qs = require("querystring");
 
-exports.get = function(baseUri, page, callback) {
-    var url = baseUri;
-    if(url.last() !== "/" && page !== 1) {
-        url += "/";
-    }
-
-    if(page !== 1) {
-        url += "page/";
-        url += page;
-    }
-
-    console.debug("fetching " + url);
-
-    spidex.get(url, {
+var getFromUri = exports.getFromUri = function(uri, callback) {
+    console.log(uri);
+    spidex.get(uri, {
         timeout: 60000
     }, function(html, status, respHeader) {
+        if(status === 301 || status === 302) {
+            return getFromUri(respHeader.location, callback);
+        }
+
         if(status !== 200 && status !== 304) {
-            console.log(respHeader);
             return callback(new Error("找福利服务器返回了错误的状态码 " + status + "，请稍后再试。"));
         }
 
-        var $ = cheerio.load(html);
+        var json;
+        try {
+            json = JSON.parse(html);
+        } catch(e) {
+            return callback(new Error("找福利服务器返回了错误的分类内容，请稍后重试。"));
+        }
 
-        var cards = [];
-        $("article.excerpt").each(function() {
-            var object = {};
-
-            // 分类信息
-            if(baseUri === config.baseUri) {
-                var cat = $(this).find("a.cat");
-                object.cat = {
-                    name: cat.text(),
-                    url: cat.attr("href")
-                };
-            }
-
-            // 标题
-            var titleObj = $(this).find("header h2 a");
-            object.title = titleObj.text();
-            object.url = titleObj.attr("href");
-
-            // 作者 & 时间
-            object.author = $(this).find("p.time").text();
-
-            // 图片...
-            var focus = $(this).find("p.focus");
-            if(focus.length) {
-                var items = [];
-                focus.find("a.thumbnail img").each(function() {
-                    items.push($(this).attr("data-original"));
-                });
-                object.images = items;
-            } else {
-                object.images = [];
-            }
-
-            // summar
-            object.summary = $(this).find("p.note").text();
-
-            // 阅读
-            object.read = /阅读\((\d*)\)/.exec($(this).find("span.post-views").text())[1];
-
-            // 标签
-            var tags = [];
-            $(this).find("span.post-tags a").each(function() {
-                tags.push($(this).text());
+        console.log(json);
+        var cards = json.map(function(object) {
+            var $ = cheerio.load(object.content);
+            var images = [];
+            $("img").each(function(/** i, elem */) {
+                images.push($(this).attr("src"));
             });
-            object.tags = tags;
 
-            cards.push(object);
+            object.images = images;
+            object.tags = object.getPath("terms.post_tag", []).map(function(v) {
+                return v.name;
+            });
+            object.url = object.link;
+            object.summary = object.excerpt.stripTags().replace(/ ?\[&hellip;\]/g, "…");
+
+            return object;
         });
 
-        if(!cards.length) return callback(new Error("没有更多了..."));
-
-        callback(undefined, cards);
+        return cards.length ? callback(undefined, cards) : callback(new Error("没有更多了..."));
     }).on("error", callback);
 };
 
+exports.get = function(id, page, callback) {
+    var url = config.baseUri + "wp-json/posts";
+    var query = {
+        "filter[cat]": id,
+        page: page
+    };
+    var queryString = qs.stringify(query);
+    url += "?" + queryString;
+    getFromUri(url, callback);
+};

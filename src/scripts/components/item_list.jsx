@@ -11,6 +11,11 @@ $(function() {
     var Paginator;
 
     ListItem = React.createClass({
+        componentDidMount: function() {
+            var dom = React.findDOMNode(this.refs.summary);
+            if($(dom).height() < 60) $(dom).height(60);
+        },
+
         render: function() {
             var title = this.props.item.title;
             if(this.props.item.cat) {
@@ -38,13 +43,13 @@ $(function() {
                         </div>
 
                         <div className="col-md-8">
-                            <p className="list-per-item-summary">
+                            <p className="list-per-item-summary" ref="summary">
                                 {this.props.item.summary}
                             </p>
 
                             <div className="row list-per-item-za">
                                 <div className="col-md-12">
-                                    点击 <span className="label label-default">{this.props.item.read}</span>
+                                    作者 <span className="label label-default">{this.props.item.author.name}</span>
                                 </div>
                                 <div className="col-md-12">
                                     标签 {tags}
@@ -65,7 +70,7 @@ $(function() {
 
         refetch: function() {
             var self = this;
-            listGetter.get(this.props.url, this.props.page, function(err, items) {
+            listGetter.get(this.props.id, this.props.page, function(err, items) {
                 if(err) {
                     console.warn(err);
 
@@ -126,16 +131,17 @@ $(function() {
          */
         getInitialState: function() {
             reactLib.addComponent("ItemListWrapper", this);
-            return { page: 1, url: config.baseUri };
+            return { page: 1, id: "" };
         },
 
         /**
          * select category
-         * @param url
+         * @param id
          * @param page
          */
-        selectCat: function(url, page) {
-            this.setState({ page: page, url: url });
+        selectCat: function(id, page) {
+            console.log("Select cat:", id, page);
+            this.setState({ page: page, id: id });
         },
 
         /**
@@ -145,7 +151,7 @@ $(function() {
         render: function() {
             return (
                 <div>
-                    <ItemList key={+new Date()} page={this.state.page} url={this.state.url} />
+                    <ItemList key={+new Date()} page={this.state.page} id={this.state.id} />
                     <Paginator />
                 </div>
             );

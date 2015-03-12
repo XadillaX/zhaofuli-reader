@@ -10,6 +10,7 @@ if(typeof $ === "undefined") {
 
 var gui = require("nw.gui");
 var win = gui.Window.get();
+var metaGetter = require("./lib/meta/");
 var boardThick;
 var titleThick;
 
@@ -40,6 +41,15 @@ $(function() {
 
         if(e.ctrlKey && e.keyCode === 18) {
             window.location.reload();
+        }
+    });
+
+    metaGetter.getMeta(function(err, meta) {
+        if(err) return;
+        if(meta) {
+            console.log("↓--------------- META ---------------↓");
+            console.log(meta);
+            console.log("↑--------------- META ---------------↑");
         }
     });
 });
