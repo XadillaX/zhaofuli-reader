@@ -1,5 +1,6 @@
 var ReactFlickity = React.createClass({
     componentDidMount: function() {
+        if(!this.props.images || !this.props.images.length) return;
         $(this.getDOMNode()).flickity({
             imagesLoaded: true
         });
