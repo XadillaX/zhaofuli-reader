@@ -25,7 +25,7 @@ MetaGetter.prototype.getCategories = function(callback, url) {
     console.debug("Getting types...");
 
     var typeUri = url || _uris.type;
-    self = this;
+    var self = this;
     spidex.get(typeUri, {
         timeout: 60000
     }, function(html, status, respHeader) {
@@ -43,9 +43,6 @@ MetaGetter.prototype.getCategories = function(callback, url) {
         var json;
         try {
             json = JSON.parse(html);
-
-            console.debug(json);
-
             json = json.reduce(function(res, item) {
                 if(item.parent) return res;
 
@@ -61,7 +58,6 @@ MetaGetter.prototype.getCategories = function(callback, url) {
             });
         } catch(e) {
             var err = new Error("找福利服务器返回了错误的分类内容，请稍后重试。");
-            console.debug(e);
             callback(err);
             self.getting = false;
             return self.emit("got", err);

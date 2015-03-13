@@ -8,7 +8,7 @@ var config = require("../config");
 var qs = require("querystring");
 
 var getFromUri = exports.getFromUri = function(uri, callback) {
-    console.log(uri);
+    console.debug("Fetching list from", uri);
     spidex.get(uri, {
         timeout: 60000
     }, function(html, status, respHeader) {
@@ -27,12 +27,12 @@ var getFromUri = exports.getFromUri = function(uri, callback) {
             return callback(new Error("找福利服务器返回了错误的分类内容，请稍后重试。"));
         }
 
-        console.log(json);
+        console.debug("List:", json);
         var cards = json.map(function(object) {
             var $ = cheerio.load(object.content);
             var images = [];
             $("img").each(function(/** i, elem */) {
-                images.push($(this).attr("src"));
+                images.push(config.safeMode ? "http://img.hb.aicdn.com/cffcd987f9c4f40f6f5c7082878e43bc66d293ca487cc-HxE4dR_fw658" : $(this).attr("src"));
             });
 
             object.images = images;
@@ -41,6 +41,7 @@ var getFromUri = exports.getFromUri = function(uri, callback) {
             });
             object.url = object.link;
             object.summary = object.excerpt.stripTags().replace(/ ?\[&hellip;\]/g, "…");
+            object.dateString = Date.create(object.date).format("{yyyy} 年 {MM} 月 {dd} 日 {HH}:{mm}:{ss}");
 
             return object;
         });

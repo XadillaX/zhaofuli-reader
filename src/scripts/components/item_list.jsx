@@ -13,6 +13,8 @@ $(function() {
     ListItem = React.createClass({
         componentDidMount: function() {
             var dom = React.findDOMNode(this.refs.summary);
+
+            // 太矮了浮动会出问题
             if($(dom).height() < 60) $(dom).height(60);
         },
 
@@ -49,6 +51,9 @@ $(function() {
 
                             <div className="row list-per-item-za">
                                 <div className="col-md-12">
+                                    时间 <span className="label label-success">{this.props.item.dateString}</span>
+                                </div>
+                                <div className="col-md-12">
                                     作者 <span className="label label-default">{this.props.item.author.name}</span>
                                 </div>
                                 <div className="col-md-12">
@@ -84,7 +89,6 @@ $(function() {
                     return;
                 }
 
-                console.log("fetched.");
                 self.setState({ inited: true, items: items });
             });
         },
@@ -97,8 +101,12 @@ $(function() {
             this.refetch();
         },
 
+        componentDidUpdate: function() {
+            pangu.element_spacing("#true-body");
+            console.debug("update spaced.");
+        },
+
         render: function() {
-            console.log("bilibili...");
             if(!this.state.inited) {
                 return (
                     <ProgressBar percent="100" style="warning" />
@@ -150,7 +158,7 @@ $(function() {
          */
         render: function() {
             return (
-                <div>
+                <div id="true-body">
                     <ItemList key={+new Date()} page={this.state.page} id={this.state.id} />
                     <Paginator />
                 </div>
