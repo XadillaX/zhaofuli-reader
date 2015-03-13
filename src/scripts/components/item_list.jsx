@@ -34,6 +34,17 @@ $(function() {
             if($(dom).height() < 60) $(dom).height(60);
         },
 
+        openArticle: function() {
+            console.debug("Opening article " + this.props.item.ID + ", " + this.props.item.title);
+
+            var articleWrapper = reactLib.getComponent("ArticleWrapper");
+            if(!articleWrapper) {
+                return console.debug("ArticleWrapper is not created yet.");
+            }
+
+            articleWrapper.setArticle(this.props.item);
+        },
+
         render: function() {
             var title = this.props.item.title;
             if(this.props.item.cat) {
@@ -53,7 +64,7 @@ $(function() {
                 <div className="well">
                     <div className="row">
                         <div className="col-md-12" style={{ marginBottom: "5px" }}>
-                            <button className="btn btn-lg btn-block btn-info list-per-item-title">{title}</button>
+                            <button onClick={this.openArticle} className="btn btn-lg btn-block btn-info list-per-item-title">{title}</button>
                         </div>
                     </div>
                     <div className="row">

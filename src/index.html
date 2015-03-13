@@ -13,6 +13,7 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/flickity/dist/flickity.css" rel="stylesheet">
     <link href="bower_components/sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="bower_components/jloadingmask/theme/default/jquery.loadingMask.css" rel="stylesheet">
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
@@ -29,6 +30,7 @@
     <script src="bower_components/imagesloaded/imagesloaded.pkgd.js"></script>
     <script src="bower_components/flickity/dist/flickity.pkgd.js"></script>
     <script src="bower_components/sweetalert/lib/sweet-alert.js"></script>
+    <script src="bower_components/jloadingmask/jquery.loadingMask.js"></script>
     <script src="scripts/classie.js"></script>
     <script src="scripts/bubble.js"></script>
     <!-- endbuild -->
@@ -68,17 +70,22 @@
 
         <div class="main-frame fl content-wrap">
             <div id="item-list" class="item-list container"></div>
+            <div id="article-content" class="article-content container"></div>
         </div>
 
         <div class="cl"></div>
         <div class="bottom-border"></div>
     </div>
 
+    <div id="_mask"></div>
+
     <!-- build:js scripts/react-components.js -->
     <script type="text/jsx" src="scripts/common/flickity.jsx"></script>
     <script type="text/jsx" src="scripts/common/progress_bar.jsx"></script>
+    <script type="text/jsx" src="scripts/common/mask.jsx"></script>
     <script type="text/jsx" src="scripts/left_menu.jsx"></script>
     <script type="text/jsx" src="scripts/item_list.jsx"></script>
+    <script type="text/jsx" src="scripts/article.jsx"></script>
     <!-- endbuild -->
 </body>
 </html>

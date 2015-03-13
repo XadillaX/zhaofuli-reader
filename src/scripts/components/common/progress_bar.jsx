@@ -26,6 +26,7 @@ var ProgressBar = React.createClass({
             <div className="progress">
                 <div className={className} role="progressbar" aria-valuenow="{this.getPercent()}"
                     aria-valuemin="0" aria-valuemax="100" style={style}>
+                    {this.props.text}
                 </div>
             </div>
         );
