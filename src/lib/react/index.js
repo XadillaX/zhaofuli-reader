@@ -13,7 +13,6 @@ var _components = {};
  */
 exports.addComponent = function(name, component) {
     console.debug(name + " is added into pool.");
-    console.debug(component);
     _components[name] = component;
 };
 

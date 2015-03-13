@@ -31,8 +31,9 @@ $(function() {
                     self.setState({ types: [ { name: "获取失败，请重试", url: "$RETRY$" } ] });
                     return;
                 }
-                
+
                 self.setState({ types: types });
+                reactLib.getComponent("ItemListWrapper").selectCat(self.state.types[0], 1);
             });
         },
         
@@ -56,13 +57,13 @@ $(function() {
                     if(i !== idx) delete n.active;
                     else {
                         n.active = true;
-                        console.log(n.name + " is selected.");
+                        console.debug(n.name + " is selected.");
                     }
                     return n;
                 })
             });
 
-            wrapper.selectCat(this.state.types[idx].id, 1);
+            wrapper.selectCat(this.state.types[idx], 1);
         },
         
         render: function() {

@@ -16,7 +16,8 @@ var ProgressBar = React.createClass({
             width: this.getPercent() + "%"
         };
 
-        var className = "progress-bar progress-bar-striped active";
+        var className = "progress-bar progress-bar-striped";
+        if(!this.props.noActive) className += " active";
         if(this.props.style) {
             className += " progress-bar-" + this.props.style;
         }

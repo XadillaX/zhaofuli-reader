@@ -42,6 +42,7 @@ MetaGetter.prototype.getCategories = function(callback, url) {
 
         var json;
         try {
+            var count = 0;
             json = JSON.parse(html);
             json = json.reduce(function(res, item) {
                 if(item.parent) return res;
@@ -50,12 +51,17 @@ MetaGetter.prototype.getCategories = function(callback, url) {
                     name: item.name,
                     url: item.link,
                     id: item.ID,
-                    slug: item.slug
+                    slug: item.slug,
+                    count: item.count
                 });
+
+                count += item.count;
                 return res;
             }, [ { name: "所有", url: config.baseUri, slug: "", active: true, id: "" } ]).sort(function(a, b) {
                 return a.id - b.id;
             });
+
+            json[0].count = count;
         } catch(e) {
             var err = new Error("找福利服务器返回了错误的分类内容，请稍后重试。");
             callback(err);

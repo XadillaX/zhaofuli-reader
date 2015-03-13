@@ -27,12 +27,17 @@ var getFromUri = exports.getFromUri = function(uri, callback) {
             return callback(new Error("找福利服务器返回了错误的分类内容，请稍后重试。"));
         }
 
+        console.debug("Header:", respHeader);
         console.debug("List:", json);
+
         var cards = json.map(function(object) {
             var $ = cheerio.load(object.content);
             var images = [];
             $("img").each(function(/** i, elem */) {
-                images.push(config.safeMode ? "http://img.hb.aicdn.com/cffcd987f9c4f40f6f5c7082878e43bc66d293ca487cc-HxE4dR_fw658" : $(this).attr("src"));
+                images.push(
+                    config.safeMode ? 
+                        "http://img.hb.aicdn.com/cffcd987f9c4f40f6f5c7082878e43bc66d293ca487cc-HxE4dR_fw658" :
+                        $(this).attr("src"));
             });
 
             object.images = images;
@@ -46,7 +51,7 @@ var getFromUri = exports.getFromUri = function(uri, callback) {
             return object;
         });
 
-        return cards.length ? callback(undefined, cards) : callback(new Error("没有更多了..."));
+        return cards.length ? callback(undefined, cards, respHeader) : callback(new Error("没有更多了..."));
     }).on("error", callback);
 };
 
