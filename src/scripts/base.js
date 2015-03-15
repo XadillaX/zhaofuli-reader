@@ -14,6 +14,16 @@ var metaGetter = require("./lib/meta/");
 var boardThick;
 var titleThick;
 
+var duoshuoQuery = {
+    short_name: "zflpl",
+    sso: {
+        login: "http:\/\/zfl520.com\/wp-login.php?action=duoshuo_login",
+        logout: "http:\/\/zfl520.com\/wp-login.php?action=logout&_wpnonce=2a35f220c2"
+    }
+};
+duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+
 function resizeBorder(w, h) {
     var trueHeight = h - titleThick - boardThick;
     $(".whole-v-border").css("height", trueHeight + "px");

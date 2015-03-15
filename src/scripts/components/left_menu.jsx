@@ -65,6 +65,10 @@ $(function() {
 
             wrapper.selectCat(this.state.types[idx], 1);
         },
+
+        exit: function() {
+            process.exit(0);
+        },
         
         render: function() {
             if(!this.state.types.length) {
@@ -88,6 +92,12 @@ $(function() {
                             />
                             );
                         })}
+                        <LeftMenuPiece
+                            key={"types--"}
+                            onClick={this.exit}
+                            name="退出"
+                            id="-100"
+                        />
                     </ul>
                 );
             }

@@ -20,8 +20,15 @@ gulp.task("bsFont", function() {
         .pipe(gulp.dest("dist"));
 });
 
+gulp.task("mask", function() {
+    gulp.src(
+        "src/bower_components/jloadingmask/theme/default/*.png",
+        { base: "src/bower_components/jloadingmask/theme/default" })
+        .pipe(gulp.dest("dist/css"));
+});
+
 // bower
-gulp.task("bower", [ "bsFont" ], function() {
+gulp.task("bower", [ "bsFont", "mask" ], function() {
     return gulp.src(
         "src/bower_components/**/*.{js,css,png,eot,svg,ttf,woff,woff2}",
         { base: "src/bower_components" })
@@ -76,12 +83,6 @@ gulp.task("jsx", function() {
 gulp.task("bundle", [ "bower", "view", "styl", "script", "jsx", "font", "image", "lib" ]);
 gulp.task("bundleBuild", [ "bower", "view", "styl", "script", "jsxToJs", "font", "image", "lib" ]);
 
-// clean
-gulp.task("clean", function() {
-    var dirs = [ "dist/scripts", "dist/styles", "dist/images" ];
-    return del.sync(dirs);
-});
-
 gulp.task("jsxToJs", function() {
     return gulp.src("src/scripts/components/**/*.jsx")
         .pipe($.react())
@@ -109,14 +110,20 @@ gulp.task("compressScript", [ "bundleBuild" ], function() {
 // compress
 gulp.task("compress", [ "compressScript" ], function() {
     return gulp.src("dist/**/*.html")
-        .pipe($.minifyHtml({ comments: true, spare: true }))
+        .pipe($.minifyHtml({ spare: true }))
         .pipe(gulp.dest("dist/"))
         .pipe($.size())
         .on("error", $.util.log);
 });
 
 // build the project
-gulp.task("build", [ "clean", "compress" ], function() {
+gulp.task("build", [ "compressScript" ], function() {
+    var dirs = [
+        __dirname + "/dist/bower_components",
+        __dirname + "/dist/scripts",
+        __dirname + "/dist/styles"
+    ];
+
     // clean useless things
     del.sync(__dirname + "/dist/bower_components");
 });

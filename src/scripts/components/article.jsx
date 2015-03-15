@@ -109,6 +109,8 @@ $(function() {
             ds.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
             ds.charset = "UTF-8";
             document.getElementById("ds-comment").appendChild(ds);
+
+            pangu.element_spacing("#article-content");
         },
 
         render: function() {
@@ -119,15 +121,22 @@ $(function() {
                     <article id="article-body" className="well" style={{ marginTop: "200px" }}>
                         <h2 title={this.state.title} className="article-title">{this.state.title}</h2>
                         <div className="article-meta row">
-                            <div className="col-xs-4">
+                            <div className="col-xs-3">
+                                <a className="no-underline" style={{ cursor: "pointer" }}
+                                    onClick={this.switchPanel.bind(this, "list")}
+                                    href="javascript:void(0);">
+                                    <span className="glyphicon glyphicon-chevron-left"></span> 返回
+                                </a>
+                            </div>
+                            <div className="col-xs-3">
                                 <span className="glyphicon glyphicon-list-alt"></span> {this.state.terms.category[0].name}
                             </div>
 
-                            <div className="col-xs-4">
+                            <div className="col-xs-3">
                                 <span className="glyphicon glyphicon-user"></span> {this.state.author.name}
                             </div>
 
-                            <div className="col-xs-4">
+                            <div className="col-xs-3">
                                 <span className="glyphicon glyphicon-time"></span> {Date.create(this.state.date).format("{MM}-{dd}")}
                             </div>
                         </div>

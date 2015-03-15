@@ -2,7 +2,7 @@
   "main": "dist/index.html",
   "name": "zhaofuli",
   "description": "Yet another simple reader for Zhaofuli.org.",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha",
   "keywords": [
     "zhaofuli",
     "av"

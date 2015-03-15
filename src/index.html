@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>找福利阅读器</title>
 
-    <!-- build:css styles/prestyle.css -->
+    <!-- build:css css/prestyle.css -->
     <link href="styles/font.css" rel="stylesheet">
     <link href="styles/bubble.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -17,11 +17,11 @@
     <link href="bower_components/jloadingmask/theme/default/jquery.loadingMask.css" rel="stylesheet">
     <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
+    <!-- build:css css/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
 
-    <!-- build:js scripts/bundle.js -->
+    <!-- build:js js/bundle.js -->
     <script src="bower_components/sugar/release/sugar-full.development.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -36,26 +36,14 @@
     <script src="scripts/bubble.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/react.js -->
+    <!-- build:js js/react.js -->
     <script src="bower_components/react/react-with-addons.js"></script>
     <script src="bower_components/react/JSXTransformer.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/base.js -->
+    <!-- build:js js/base.js -->
     <script src="scripts/base.js"></script>
     <!-- endbuild -->
-
-    <script>
-    var duoshuoQuery = {
-        short_name: "zflpl",
-        sso: {
-            login: "http:\/\/zfl520.com\/wp-login.php?action=duoshuo_login",
-            logout: "http:\/\/zfl520.com\/wp-login.php?action=logout&_wpnonce=2a35f220c2"
-        }
-    };
-    duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
-    duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
-    </script>
 </head>
 
 <body>
@@ -81,12 +69,10 @@
         <div class="left-border whole-v-border fl"></div>
         <div class="right-border whole-v-border fr"></div>
 
-        <!-- 列表页 -->
         <div class="main-frame fl content-wrap" id="item-list-wrapper">
             <div id="item-list" class="item-list container"></div>
         </div>
 
-        <!-- 内容页 -->
         <div class="main-frame fl content-wrap" id="article-content-wrapper">
             <div id="article-content" class="article-content container"></div>
         </div>
@@ -97,7 +83,7 @@
 
     <div id="_mask"></div>
 
-    <!-- build:js scripts/react-components.js -->
+    <!-- build:js js/react-components.js -->
     <script type="text/jsx" src="scripts/common/flickity.jsx"></script>
     <script type="text/jsx" src="scripts/common/progress_bar.jsx"></script>
     <script type="text/jsx" src="scripts/common/mask.jsx"></script>
