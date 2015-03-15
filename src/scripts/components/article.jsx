@@ -2,7 +2,9 @@ $(function() {
     var reactLib = require("./lib/react");
     var ArticleWrapper;
     var MaskWrapper;
-    var articleGetter = require("./lib/post/getter");
+    var gui = require("nw.gui");
+    var win = gui.Window.get();
+    // var articleGetter = require("./lib/post/getter");
 
     MaskWrapper = React.createClass({
         getInitialState: function() {
@@ -47,15 +49,15 @@ $(function() {
         switchPanel: function(type) {
             switch(type) {
                 case "list": {
-                    $("#article-content").css("display", "none");
-                    $("#item-list").fadeIn("normal");
+                    $("#article-content-wrapper").css("display", "none");
+                    $("#item-list-wrapper").fadeIn("normal");
                     break;
                 }
 
                 case "article":
                 default: {
-                    $("#item-list").css("display", "none");
-                    $("#article-content").fadeIn("normal");
+                    $("#item-list-wrapper").css("display", "none");
+                    $("#article-content-wrapper").fadeIn("normal");
                     break;
                 }
             }
@@ -68,7 +70,45 @@ $(function() {
             this.switchPanel("article");
             setTimeout(function() {
                 mask.hide();
-            }, 200);
+            }, 500);
+        },
+
+        dfsNodes: function(node) {
+            if($(node).text().indexOf("转载请注明：") >= 0) {
+                $(node).css("display", "none");
+            }
+
+            if($(node)[0].nodeName.toLowerCase() === "img") {
+                $(node).addClass("img-thumbnail");
+            }
+
+            if($(node)[0].nodeName.toLowerCase() === "a") {
+                var href = $(node).attr("href");
+                $(node).attr("href", "javascript:void(0);");
+                $(node).click(function() {
+                    gui.Shell.openExternal(href);
+                });
+            }
+
+            var self = this;
+            $(node).children().each(function() {
+                self.dfsNodes(this);
+            });
+        },
+
+        componentDidUpdate: function() {
+            var body = React.findDOMNode(this.refs.body);
+            var self = this;
+            $(body).children().each(function() {
+                self.dfsNodes(this);
+            });
+
+            var ds = document.createElement("script");
+            ds.type = "text/javascript";
+            ds.async = true;
+            ds.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
+            ds.charset = "UTF-8";
+            document.getElementById("ds-comment").appendChild(ds);
         },
 
         render: function() {
@@ -76,7 +116,32 @@ $(function() {
                 return (<div style={{ marginTop: "200px" }}>...</div>);
             } else {
                 return (
-                    <pre style={{ marginTop: "200px" }}>{ JSON.stringify(this.state, true, 2) }</pre>
+                    <article id="article-body" className="well" style={{ marginTop: "200px" }}>
+                        <h2 title={this.state.title} className="article-title">{this.state.title}</h2>
+                        <div className="article-meta row">
+                            <div className="col-xs-4">
+                                <span className="glyphicon glyphicon-list-alt"></span> {this.state.terms.category[0].name}
+                            </div>
+
+                            <div className="col-xs-4">
+                                <span className="glyphicon glyphicon-user"></span> {this.state.author.name}
+                            </div>
+
+                            <div className="col-xs-4">
+                                <span className="glyphicon glyphicon-time"></span> {Date.create(this.state.date).format("{MM}-{dd}")}
+                            </div>
+                        </div>
+
+                        <div ref="body" className="true-article" dangerouslySetInnerHTML={{ __html: this.state.content }}></div>
+
+                        <div id="ds-comment" className="well" ref="comment">
+                            <div className="ds-thread"
+                                data-thread-key={this.state.ID}
+                                data-author-key={this.state.author.ID}
+                                data-title={this.state.title}
+                                data-url={this.state.link}></div>
+                        </div>
+                    </article>
                 );
             }
         }

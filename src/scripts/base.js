@@ -52,4 +52,13 @@ $(function() {
             console.log("↑--------------- META ---------------↑");
         }
     });
+
+    win.on("new-win-policy", function(frame, url, policy) {
+        policy.setNewWindowManifest({
+            height: 750,
+            width: 1000,
+            icon: "link.png",
+            frame: true
+        });
+    });
 });

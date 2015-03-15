@@ -11,6 +11,7 @@
     <link href="styles/font.css" rel="stylesheet">
     <link href="styles/bubble.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
     <link href="bower_components/flickity/dist/flickity.css" rel="stylesheet">
     <link href="bower_components/sweetalert/lib/sweet-alert.css" rel="stylesheet">
     <link href="bower_components/jloadingmask/theme/default/jquery.loadingMask.css" rel="stylesheet">
@@ -43,6 +44,18 @@
     <!-- build:js scripts/base.js -->
     <script src="scripts/base.js"></script>
     <!-- endbuild -->
+
+    <script>
+    var duoshuoQuery = {
+        short_name: "zflpl",
+        sso: {
+            login: "http:\/\/zfl520.com\/wp-login.php?action=duoshuo_login",
+            logout: "http:\/\/zfl520.com\/wp-login.php?action=logout&_wpnonce=2a35f220c2"
+        }
+    };
+    duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+    duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+    </script>
 </head>
 
 <body>
@@ -60,7 +73,7 @@
     <nav class="navbar navbar-fixed-top navbar-inverse whole-title-bar">
         <div class="navbar-header no-select">
             <button class="left-menu-button" id="open-button"></button>
-            <span id="whole-title" class="navbar-brand">找福利阅读器</span>
+            <span id="whole-title" class="navbar-brand">找福利阅读器 ❤</span>
         </div>
     </nav>
 
@@ -68,8 +81,13 @@
         <div class="left-border whole-v-border fl"></div>
         <div class="right-border whole-v-border fr"></div>
 
-        <div class="main-frame fl content-wrap">
+        <!-- 列表页 -->
+        <div class="main-frame fl content-wrap" id="item-list-wrapper">
             <div id="item-list" class="item-list container"></div>
+        </div>
+
+        <!-- 内容页 -->
+        <div class="main-frame fl content-wrap" id="article-content-wrapper">
             <div id="article-content" class="article-content container"></div>
         </div>
 

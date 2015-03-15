@@ -6,6 +6,7 @@ var spidex = require("spidex");
 var cheerio = require("cheerio");
 var config = require("../config");
 var qs = require("querystring");
+var escaper = require("true-html-escape");
 
 var getFromUri = exports.getFromUri = function(uri, callback) {
     console.debug("Fetching list from", uri);
@@ -47,6 +48,9 @@ var getFromUri = exports.getFromUri = function(uri, callback) {
             object.url = object.link;
             object.summary = object.excerpt.stripTags().replace(/ ?\[&hellip;\]/g, "…");
             object.dateString = Date.create(object.date).format("{yyyy} 年 {MM} 月 {dd} 日 {HH}:{mm}:{ss}");
+
+            // escape
+            object.title = escaper.unescape(object.title);
 
             return object;
         });

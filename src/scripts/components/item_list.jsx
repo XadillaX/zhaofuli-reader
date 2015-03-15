@@ -11,7 +11,8 @@ $(function() {
     var Paginator;
 
     function parseLinkHeader(link) {
-        link = link.split(",");
+        link = link || "";
+        link = link.split(",") || [];
         return link.map(function(str) {
             var temp = str.split(";");
             var url = temp[0].trim();
@@ -20,7 +21,10 @@ $(function() {
 
             return temp.reduce(function(res, n) {
                 var x = n.split("=");
-                res[x[0].trim()] = JSON.parse(x[1].trim());
+                var v = x[1].trim();
+                if(v[0] === "\"") v = v.substr(1);
+                if(v[v.length - 1] === "\"") v = v.substr(0, v.length - 1);
+                res[x[0].trim()] = v;
                 return res;
             }, { url: url });
         });
@@ -239,6 +243,12 @@ $(function() {
          */
         selectCat: function(type, page) {
             console.debug("Select cat:", type, page);
+
+            var art = reactLib.getComponent("ArticleWrapper");
+            if(art) {
+                art.switchPanel("list");
+            }
+
             this.setState({ page: page, type: type });
         },
 

@@ -23,7 +23,7 @@ gulp.task("bsFont", function() {
 // bower
 gulp.task("bower", [ "bsFont" ], function() {
     return gulp.src(
-        "src/bower_components/**/*.{js,css,png}",
+        "src/bower_components/**/*.{js,css,png,eot,svg,ttf,woff,woff2}",
         { base: "src/bower_components" })
         .pipe(gulp.dest("dist/bower_components"));
 });
