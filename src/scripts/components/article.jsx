@@ -103,14 +103,15 @@ $(function() {
                 self.dfsNodes(this);
             });
 
-            var ds = document.createElement("script");
-            ds.type = "text/javascript";
-            ds.async = true;
-            ds.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
-            ds.charset = "UTF-8";
-            document.getElementById("ds-comment").appendChild(ds);
-
             pangu.element_spacing("#article-content");
+
+            delete window.DUOSHUO;
+            var head = $("head").remove("script[role='reload']");
+            $("<scri" + "pt>" + "</scr" + "ipt>").attr({
+                role: "reload",
+                src: "http://static.duoshuo.com/embed.js",
+                type: "text/javascript"
+            }).appendTo(head);
         },
 
         render: function() {
@@ -143,7 +144,7 @@ $(function() {
 
                         <div ref="body" className="true-article" dangerouslySetInnerHTML={{ __html: this.state.content }}></div>
 
-                        <div id="ds-comment" className="well" ref="comment">
+                        <div key={new Date()} id="ds-comment" className="well" ref="comment">
                             <div className="ds-thread"
                                 data-thread-key={this.state.ID}
                                 data-author-key={this.state.author.ID}
