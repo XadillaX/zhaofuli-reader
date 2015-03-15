@@ -23,13 +23,13 @@
     "plugin": true
   },
   "dependencies": {
-    "bower": "^1.3.12",
     "cheerio": "^0.18.0",
     "moment": "^2.9.0",
     "spidex": "^2.0.3",
     "true-html-escape": "0.0.2"
   },
   "devDependencies": {
+    "bower": "^1.3.12",
     "del": "^1.1.1",
     "gulp-react": "^2.0.0",
     "gulp": "^3.8.10",
