@@ -140,4 +140,3 @@ gulp.task("watch", [ "bundle" ], function() {
 
 // set default task to `watch`
 gulp.task("default", [ "watch" ]);
-
