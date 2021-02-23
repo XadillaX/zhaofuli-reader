@@ -23,7 +23,7 @@
     "plugin": true
   },
   "dependencies": {
-    "cheerio": "^0.18.0",
+    "cheerio": "^0.20.0",
     "spidex": "^2.0.3",
     "true-html-escape": "0.0.2"
   },
